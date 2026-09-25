@@ -213,7 +213,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
                         <h3 className="font-serif text-base sm:text-lg font-bold text-[#131E1C]">
                           {suite.name}
                         </h3>
-                        <p className="text-xs text-[#586E6B] font-medium">
+                        <p className="text-xs text-[#2D4744] font-semibold">
                           {suite.bedType} · {suite.view}
                         </p>
                         <p className="text-xs text-[#314240] line-clamp-2 leading-relaxed pt-1">
@@ -323,7 +323,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
                         <h3 className="font-serif text-lg font-bold text-[#131E1C] leading-snug">
                           {suite.name}
                         </h3>
-                        <p className="text-xs text-[#586E6B] font-medium pt-0.5">
+                        <p className="text-xs text-[#2D4744] font-semibold pt-0.5">
                           {suite.sqft} · {suite.capacity} · {suite.bedType}
                         </p>
                       </div>

@@ -27,6 +27,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'sent' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
@@ -82,7 +83,8 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
       `Guests: ${formData.guests}\n` +
       `Notes: ${formData.message || 'None'}`;
     navigator.clipboard.writeText(summaryText);
-    alert('Reservation summary copied to clipboard!');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
   return (
@@ -162,9 +164,13 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                   <button
                     type="button"
                     onClick={handleCopySummary}
-                    className="w-full sm:w-auto px-4 py-2.5 rounded-full bg-[#FAF6EF] border border-[#D5C7B2] hover:bg-[#EFE8DC] text-[#132422] text-xs font-bold transition-all"
+                    className={`w-full sm:w-auto px-4 py-2.5 rounded-full border text-xs font-bold transition-all ${
+                      copied
+                        ? 'bg-emerald-700 text-white border-emerald-600 shadow-sm'
+                        : 'bg-[#FAF6EF] border-[#D5C7B2] hover:bg-[#EFE8DC] text-[#132422]'
+                    }`}
                   >
-                    <span>Copy Summary</span>
+                    <span>{copied ? '✓ Copied to Clipboard!' : 'Copy Summary'}</span>
                   </button>
                 </div>
 

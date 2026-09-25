@@ -93,7 +93,7 @@ export const ContactEnquirySection: React.FC = () => {
                 <h4 className="font-serif text-lg sm:text-xl font-bold text-[#131E1C]">
                   WhatsApp Concierge
                 </h4>
-                <p className="text-xs text-[#586E6B] mt-1 font-mono font-medium">
+                <p className="text-xs text-[#2D4744] mt-1 font-mono font-medium">
                   {PHONE_DISPLAY}
                 </p>
                 <p className="text-[11px] text-[#128C7E] mt-0.5 font-medium">
@@ -125,10 +125,10 @@ export const ContactEnquirySection: React.FC = () => {
                 <h4 className="font-serif text-lg sm:text-xl font-bold text-[#131E1C]">
                   Front Desk Line
                 </h4>
-                <p className="text-xs text-[#586E6B] mt-1 font-mono font-medium">
+                <p className="text-xs text-[#2D4744] mt-1 font-mono font-medium">
                   {PHONE_DISPLAY}
                 </p>
-                <p className="text-[11px] text-[#586E6B] mt-0.5">
+                <p className="text-[11px] text-[#2D4744] mt-0.5">
                   Available 8:00 AM – 10:00 PM
                 </p>
               </div>
@@ -157,7 +157,7 @@ export const ContactEnquirySection: React.FC = () => {
                 <h4 className="font-serif text-lg sm:text-xl font-bold text-[#131E1C] truncate">
                   stay@coorglaya.com
                 </h4>
-                <p className="text-xs text-[#586E6B] mt-1 truncate font-medium">
+                <p className="text-xs text-[#2D4744] mt-1 truncate font-medium">
                   Event RFPs & Group Queries
                 </p>
                 <p className="text-[11px] text-[#8C5F2E] mt-0.5">
@@ -185,16 +185,16 @@ export const ContactEnquirySection: React.FC = () => {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-bold text-[#586E6B] uppercase tracking-wider block">
+                <span className="text-[10px] font-bold text-[#2D4744] uppercase tracking-wider block">
                   4. Location & Hours
                 </span>
                 <h4 className="font-serif text-lg sm:text-xl font-bold text-[#131E1C]">
                   Kushalnagar, Coorg
                 </h4>
-                <p className="text-xs text-[#586E6B] mt-1">
+                <p className="text-xs text-[#2D4744] mt-1 font-medium">
                   Near Kaveri River Basin
                 </p>
-                <p className="text-[11px] text-[#586E6B] mt-0.5">
+                <p className="text-[11px] text-[#2D4744] mt-0.5 font-medium">
                   Check-in 1 PM · Check-out 11 AM
                 </p>
               </div>
