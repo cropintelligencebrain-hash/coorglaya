@@ -9,6 +9,7 @@ import {
   ChevronRight,
   ShieldCheck,
   Compass,
+  Lock,
 } from 'lucide-react';
 import { SuiteSpecData } from '../3d/SuiteInspectionCard3D';
 
@@ -22,9 +23,11 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
   onBookNow,
 }) => {
   const [activeIdx, setActiveIdx] = useState(0);
+  const [isPinned, setIsPinned] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const lastScrollTimeRef = useRef<number>(0);
-  const touchStartXRef = useRef<number | null>(null);
+  const activeIdxRef = useRef(activeIdx);
+  activeIdxRef.current = activeIdx;
 
   const handleNext = () => {
     setActiveIdx((prev) => (prev + 1) % suites.length);
@@ -39,58 +42,81 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
   };
 
   // 
-  // SCROLL REVEAL (ZERO-CLICK SCROLL DISPATCH):
-  // When the customer scrolls down with mouse wheel or trackpad over the suite card:
-  // - It smoothly transitions to the next suite without requiring any clicks.
-  // - If at the last suite and scrolling down, it naturally releases to allow the page to continue downward.
-  // - If at the first suite and scrolling up, it naturally releases to allow page to scroll upward.
-  // - ZERO 200vh/320vh height containers, completely eliminating the empty blank space below!
+  // VIEWPORT PIN & SCROLL FOCUS INTERCEPT:
+  // Once the visitor scrolls down and this section reaches the focal area below the navbar:
+  // - The view pins / locks focus on the suite showcase.
+  // - Scrolling down cycles through all suites (01 -> 02 -> 03 -> 04) without moving the page down.
+  // - Once Suite 04 is reached, scrolling down unpins and naturally proceeds to the below content.
+  // - Scrolling up on Suite 01 unpins and naturally proceeds back up to top content.
+  // - ZERO 200vh/320vh height containers, completely eliminating trailing blank space!
   //
   useEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
+    const onWindowWheel = (e: WheelEvent) => {
+      const card = cardRef.current;
+      if (!card) return;
 
-    const onWheel = (e: WheelEvent) => {
-      // Ignore horizontal scrolling
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      const rect = card.getBoundingClientRect();
+      const idealTop = 95; // comfortable clearance below floating navbar
+      const inFocalZone = rect.top <= 145 && rect.top >= 40 && rect.bottom >= window.innerHeight * 0.65;
 
-      const now = Date.now();
-      // Debounce threshold (450ms) to ensure one clean suite transition per scroll impulse
-      if (now - lastScrollTimeRef.current < 450) {
-        if (
-          (e.deltaY > 0 && activeIdx < suites.length - 1) ||
-          (e.deltaY < 0 && activeIdx > 0)
-        ) {
-          e.preventDefault();
-        }
+      if (!inFocalZone) {
+        setIsPinned(false);
         return;
       }
 
+      setIsPinned(true);
+
+      const now = performance.now();
+      const currentIdx = activeIdxRef.current;
+
       // Scrolling Down
-      if (e.deltaY > 20) {
-        if (activeIdx < suites.length - 1) {
+      if (e.deltaY > 15) {
+        if (currentIdx < suites.length - 1) {
           e.preventDefault();
-          lastScrollTimeRef.current = now;
-          setActiveIdx((prev) => prev + 1);
+          // Lock scroll position at the ideal focal alignment
+          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = currentScrollY + rect.top - idealTop;
+          if (Math.abs(rect.top - idealTop) > 6) {
+            window.scrollTo({ top: targetY, behavior: 'auto' });
+          }
+
+          if (now - lastScrollTimeRef.current >= 420) {
+            lastScrollTimeRef.current = now;
+            setActiveIdx((prev) => Math.min(suites.length - 1, prev + 1));
+          }
+        } else {
+          // At the last suite (04): allow natural scroll down to below sections
+          setIsPinned(false);
         }
-        // If at the last suite, do NOT preventDefault -> page scrolls down to next section immediately
       }
       // Scrolling Up
-      else if (e.deltaY < -20) {
-        if (activeIdx > 0) {
+      else if (e.deltaY < -15) {
+        if (currentIdx > 0) {
           e.preventDefault();
-          lastScrollTimeRef.current = now;
-          setActiveIdx((prev) => prev - 1);
+          // Lock scroll position at the ideal focal alignment
+          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          const targetY = currentScrollY + rect.top - idealTop;
+          if (Math.abs(rect.top - idealTop) > 6) {
+            window.scrollTo({ top: targetY, behavior: 'auto' });
+          }
+
+          if (now - lastScrollTimeRef.current >= 420) {
+            lastScrollTimeRef.current = now;
+            setActiveIdx((prev) => Math.max(0, prev - 1));
+          }
+        } else {
+          // At the first suite (01): allow natural scroll up to top sections
+          setIsPinned(false);
         }
-        // If at the first suite, do NOT preventDefault -> page scrolls up naturally
       }
     };
 
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
-  }, [activeIdx, suites.length]);
+    window.addEventListener('wheel', onWindowWheel, { passive: false });
+    return () => window.removeEventListener('wheel', onWindowWheel);
+  }, [suites.length]);
 
   // Touch swipe support for mobile
+  const touchStartXRef = useRef<number | null>(null);
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartXRef.current = e.touches[0].clientX;
   };
@@ -135,7 +161,9 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
         MAIN CLEAN SPLIT CARD (ZERO OVERLAPPING BOXES):
         Fits naturally in document flow. ZERO tall blank containers!
       */}
-      <div className="rounded-3xl sm:rounded-4xl bg-[#FAF6EF] border-2 border-[#E4D9C8] p-5 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden">
+      <div className={`rounded-3xl sm:rounded-4xl bg-[#FAF6EF] border-2 transition-all duration-300 p-5 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden ${
+        isPinned ? 'border-[#137586]/60 shadow-[0_25px_60px_rgba(19,117,134,0.12)]' : 'border-[#E4D9C8]'
+      }`}>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
           
           {/* 
@@ -316,10 +344,14 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
           </button>
         </div>
 
-        {/* Scroll Guidance Indicator */}
-        <div className="flex items-center gap-1.5 text-[11px] text-[#6E4924] font-mono">
+        {/* Dynamic Focus Guidance Indicator */}
+        <div className="flex items-center gap-2 text-[11px] text-[#6E4924] font-mono">
           <Compass className="w-3.5 h-3.5 text-[#137586] animate-pulse" />
-          <span>Scroll over card or use middle arrows to reveal next suite</span>
+          <span>
+            {activeIdx < suites.length - 1
+              ? `Scroll down to reveal suite 0${activeIdx + 2} of 0${suites.length}`
+              : 'Suite 04 of 04 · Scroll down to continue to resort buyout & comparison'}
+          </span>
         </div>
       </div>
     </div>
