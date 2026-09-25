@@ -125,24 +125,24 @@ export const BirdsongNatureSection: React.FC = () => {
                   {localBirds.map((bird, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors"
+                      className="p-3 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#137586] transition-colors shadow-2xs"
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <h5 className="text-xs font-bold text-[#132422]">{bird.name}</h5>
-                        <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${bird.color}`}>
+                        <h5 className="text-xs font-bold text-[#0F1C1A]">{bird.name}</h5>
+                        <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border ${bird.color}`}>
                           {bird.callTime}
                         </span>
                       </div>
-                      <p className="text-[11px] text-[#556966] leading-relaxed">
+                      <p className="text-[11px] text-[#223633] font-medium leading-relaxed">
                         {bird.description}
                       </p>
                     </div>
                   ))}
                 </div>
 
-                <div className="pt-1 text-center border-t border-[#EFE8DC]">
-                  <p className="text-[11px] text-[#786D5F] italic flex items-center justify-center gap-1.5">
-                    <Sparkles className="w-3 h-3 text-[#A3733E]" />
+                <div className="pt-2 text-center border-t border-[#EFE8DC]">
+                  <p className="text-[11px] text-[#3D3023] font-medium italic flex items-center justify-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#A3733E]" />
                     <span>Recorded live on location under our estate's bamboo canopy</span>
                   </p>
                 </div>

@@ -41,8 +41,8 @@ export const OfflineRegionalMap: React.FC<OfflineRegionalMapProps> = ({
           style={{ left: `${RESORT_COORDINATES.mapX}%`, top: `${RESORT_COORDINATES.mapY}%` }}
           title="Coorg Laya Resort (Kushalnagar Base)"
         >
-          <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#132422] text-white border-2 border-[#D4AF37] shadow-lg">
-            <span className="text-sm">🏡</span>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#132422] text-white border-2 border-[#D4AF37] shadow-lg">
+            <img src="/images/logo/LayaLogo.jpeg" alt="Laya" className="w-4 h-4 rounded-full object-cover shrink-0" />
             <span className="text-[11px] font-extrabold text-white tracking-tight whitespace-nowrap">
               Coorg Laya
             </span>

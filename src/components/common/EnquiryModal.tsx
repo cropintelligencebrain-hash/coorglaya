@@ -170,7 +170,16 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                         : 'bg-[#FAF6EF] border-[#D5C7B2] hover:bg-[#EFE8DC] text-[#132422]'
                     }`}
                   >
-                    <span>{copied ? '✓ Copied to Clipboard!' : 'Copy Summary'}</span>
+                    <span className="flex items-center justify-center gap-1.5">
+                      {copied ? (
+                        <>
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          <span>Copied to Clipboard!</span>
+                        </>
+                      ) : (
+                        <span>Copy Summary</span>
+                      )}
+                    </span>
                   </button>
                 </div>
 

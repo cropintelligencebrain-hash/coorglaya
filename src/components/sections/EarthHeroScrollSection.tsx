@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, ArrowUpRight, ChevronDown, LayoutGrid } from 'lucide-react';
+import { Sparkles, ArrowUpRight, ChevronDown, LayoutGrid, BedDouble, Trees, Waves } from 'lucide-react';
 import { RealisticEarthCanvas } from '../3d/RealisticEarthCanvas';
 import { LayaHeroLogo } from '../common/LayaHeroLogo';
 
@@ -240,12 +240,21 @@ export const EarthHeroScrollSection: React.FC<EarthHeroScrollSectionProps> = ({
             {/* Bottom Bar: Clean Estate Specs & Scroll Indicator */}
             <div className="flex items-center justify-between gap-3 pt-4 border-t border-white/10 text-xs text-white/80">
               {/* Left/Center: Anchored Estate Specifications */}
-              <div className="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs font-medium text-[#FAF6EF]/90">
-                <span>🏡 15 Private Suites</span>
-                <span className="text-[#D4AF37]">·</span>
-                <span>🌿 500-Guest River Lawn</span>
-                <span className="text-[#D4AF37]">·</span>
-                <span>🏊 Palm Spring Pool</span>
+              <div className="flex items-center gap-2 sm:gap-4 text-[11px] sm:text-xs font-medium text-[#FAF6EF]/90">
+                <span className="flex items-center gap-1.5">
+                  <BedDouble className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>15 Private Suites</span>
+                </span>
+                <span className="text-[#D4AF37]/60">·</span>
+                <span className="flex items-center gap-1.5">
+                  <Trees className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>500-Guest River Lawn</span>
+                </span>
+                <span className="text-[#D4AF37]/60">·</span>
+                <span className="flex items-center gap-1.5">
+                  <Waves className="w-3.5 h-3.5 text-[#D4AF37]" />
+                  <span>Palm Spring Pool</span>
+                </span>
               </div>
 
               {/* Right: Scroll Indicator */}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Image as ImageIcon } from 'lucide-react';
 
 interface ClayImageProps {
   src: string;
@@ -62,7 +63,7 @@ export const ClayImage: React.FC<ClayImageProps> = ({
       ) : (
         <div className="absolute inset-0 bg-sand-200 flex flex-col items-center justify-center p-4 text-center">
           <div className="w-10 h-10 rounded-full bg-water-500/20 flex items-center justify-center text-water-700 mb-2">
-            🏞️
+            <ImageIcon className="w-5 h-5 text-water-700" />
           </div>
           <p className="text-xs font-medium text-riverbed-700">{alt}</p>
         </div>

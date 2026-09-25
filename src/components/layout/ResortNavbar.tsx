@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, Sparkles, MessageCircle, Phone, MapPin, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Sparkles, MessageCircle, Phone, MapPin, ChevronRight, BedDouble, Waves, Trees, Camera, Home } from 'lucide-react';
 import { BrandLogo } from '../common/BrandLogo';
 import { springTransition } from '../../utils/motionVariants';
 
@@ -47,8 +47,9 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [menuOpen]);
 
-  // Primary navigation links
+  // Primary navigation links with explicit Home button
   const primaryLinks = [
+    { name: 'Home', path: '/', tag: 'Sanctuary' },
     { name: 'Suites', path: '/rooms', tag: '15 Private Suites' },
     { name: 'Amenities', path: '/amenities', tag: 'Pool & Lawn' },
     { name: 'Events Lawn', path: '/events', tag: '500 Guests' },
@@ -56,39 +57,40 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
     { name: 'Contact', path: '/contact', tag: 'Direct' },
   ];
 
-  // Core 4 Pillars for the Directory Menu
+  // Core 4 Pillars for the Directory Menu (Using proper SVG Lucide icons instead of emojis)
   const corePillars = [
     {
       title: 'Suites & Living Quarters',
       desc: '15 private suites crafted for peaceful mountain nights',
       path: '/rooms',
       badge: 'Direct Booking',
-      icon: '🏡',
+      icon: BedDouble,
     },
     {
       title: 'Palm Pool & Recreation',
       desc: 'Crystal swimming pool, badminton lawn & kids trampoline',
       path: '/amenities',
       badge: 'Daily 7 AM – 7 PM',
-      icon: '🏊',
+      icon: Waves,
     },
     {
       title: '500-Guest Celebration Lawn',
       desc: 'Open manicured lawns for weddings, milestones & retreats',
       path: '/events',
       badge: 'Up to 500 Capacity',
-      icon: '🌿',
+      icon: Trees,
     },
     {
       title: 'Resort Photo Gallery',
       desc: 'Authentic high-resolution photos of rooms & grounds',
       path: '/gallery',
       badge: 'Real Grounds',
-      icon: '📸',
+      icon: Camera,
     },
   ];
 
   const secondaryPages = [
+    { name: 'Home', path: '/', hint: 'Sanctuary Main' },
     { name: 'Nearby Tourism & Kaveri River', path: '/nearby', hint: '4km to Kaveri' },
     { name: 'About Coorg Laya', path: '/about', hint: 'Heritage & Vision' },
     { name: 'Contact & Location Radar', path: '/contact', hint: 'Kushalnagar, Coorg' },
@@ -108,6 +110,20 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
             <BrandLogo compact={true} isLight={false} />
           </Link>
 
+          {/* Explicit Mobile Home Button */}
+          <Link
+            to="/"
+            className={`md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
+              location.pathname === '/'
+                ? 'bg-[#132422] text-[#FAF6EF]'
+                : 'text-[#223633] bg-[#EFE8DC]/80 hover:bg-[#EFE8DC] border border-[#DFD3C0]'
+            }`}
+            aria-label="Return to Home"
+          >
+            <Home className="w-3.5 h-3.5 text-[#D4AF37]" />
+            <span>Home</span>
+          </Link>
+
           {/* Desktop Core Links (Fast Visual Orientation) */}
           <nav className="hidden md:flex items-center gap-1 text-xs font-semibold text-[#132422]">
             {primaryLinks.map((link) => {
@@ -116,13 +132,14 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-full transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                     isActive
                       ? 'bg-[#132422] text-[#FAF6EF] shadow-sm'
                       : 'text-[#314240] hover:text-[#116B7B] hover:bg-[#F0EAE1]'
                   }`}
                 >
-                  {link.name}
+                  {link.name === 'Home' && <Home className="w-3.5 h-3.5 text-[#D4AF37]" />}
+                  <span>{link.name}</span>
                 </Link>
               );
             })}
@@ -193,35 +210,70 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
                 </span>
               </div>
 
+              {/* Prominent Home Option */}
+              <Link
+                to="/"
+                onClick={() => setMenuOpen(false)}
+                className={`w-full p-2.5 rounded-2xl flex items-center justify-between border transition-all ${
+                  location.pathname === '/'
+                    ? 'bg-[#14422F] text-white border-[#D4AF37]/50 shadow-sm'
+                    : 'bg-white/90 hover:bg-white text-[#132422] border-[#E4D9C8]'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                    location.pathname === '/' ? 'bg-[#D4AF37]/20 text-[#D4AF37]' : 'bg-[#E5F3F5] text-[#137586]'
+                  }`}>
+                    <Home className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold block">Resort Home Sanctuary</span>
+                    <span className={`text-[10px] ${location.pathname === '/' ? 'text-white/80' : 'text-[#586E6B]'}`}>
+                      Return to main overview & grounds
+                    </span>
+                  </div>
+                </div>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
+                  location.pathname === '/' ? 'bg-[#D4AF37] text-[#0A261B]' : 'bg-[#EFE8DC] text-[#132422]'
+                }`}>
+                  Home
+                </span>
+              </Link>
+
               {/* 4 Core Pillars Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {corePillars.map((pillar) => (
-                  <Link
-                    key={pillar.path}
-                    to={pillar.path}
-                    onClick={() => setMenuOpen(false)}
-                    className="p-3 rounded-2xl bg-white/80 hover:bg-white border border-[#E4D9C8] hover:border-[#137586] transition-all duration-200 flex flex-col justify-between group shadow-sm"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-base">{pillar.icon}</span>
-                        <span className="text-[10px] font-mono font-bold text-[#137586] bg-[#E5F3F5] px-2 py-0.5 rounded-full">
-                          {pillar.badge}
-                        </span>
+                {corePillars.map((pillar) => {
+                  const Icon = pillar.icon;
+                  return (
+                    <Link
+                      key={pillar.path}
+                      to={pillar.path}
+                      onClick={() => setMenuOpen(false)}
+                      className="p-3 rounded-2xl bg-white/80 hover:bg-white border border-[#E4D9C8] hover:border-[#137586] transition-all duration-200 flex flex-col justify-between group shadow-sm"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="w-7 h-7 rounded-lg bg-[#E5F3F5] text-[#137586] flex items-center justify-center">
+                            <Icon className="w-3.5 h-3.5" />
+                          </div>
+                          <span className="text-[10px] font-mono font-bold text-[#137586] bg-[#E5F3F5] px-2 py-0.5 rounded-full">
+                            {pillar.badge}
+                          </span>
+                        </div>
+                        <h4 className="font-serif text-sm font-bold text-[#131E1C] group-hover:text-[#137586] transition-colors">
+                          {pillar.title}
+                        </h4>
+                        <p className="text-[11px] text-[#586E6B] leading-snug line-clamp-1 mt-0.5">
+                          {pillar.desc}
+                        </p>
                       </div>
-                      <h4 className="font-serif text-sm font-bold text-[#131E1C] group-hover:text-[#137586] transition-colors">
-                        {pillar.title}
-                      </h4>
-                      <p className="text-[11px] text-[#586E6B] leading-snug line-clamp-1 mt-0.5">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                    <div className="pt-2 mt-1 flex items-center gap-1 text-[11px] font-bold text-[#137586] group-hover:translate-x-0.5 transition-transform">
-                      <span>View Experience</span>
-                      <ChevronRight className="w-3 h-3" />
-                    </div>
-                  </Link>
-                ))}
+                      <div className="pt-2 mt-1 flex items-center gap-1 text-[11px] font-bold text-[#137586] group-hover:translate-x-0.5 transition-transform">
+                        <span>View Experience</span>
+                        <ChevronRight className="w-3 h-3" />
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Secondary Links & Direct Actions */}

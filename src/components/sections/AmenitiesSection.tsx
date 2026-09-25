@@ -1,10 +1,29 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Waves, Sparkles, Activity, Smile, Sun, ArrowUpRight, CheckCircle2, Clock, ShieldCheck } from 'lucide-react';
+import { Waves, Sparkles, Smile, ArrowUpRight, CheckCircle2, Coffee, Flame, Wifi, ShieldCheck } from 'lucide-react';
 import { ClayImage } from '../common/ClayImage';
 import { FluidWaterCard } from '../3d/FluidWaterCard';
 import { CinematicReveal } from '../common/CinematicReveal';
-import { Clay3DCard } from '../3d/Clay3DCard';
+
+// Custom Crisp SVG Icons for Sports
+const BadmintonIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 2a4 4 0 0 0-4 4c0 1.6.9 3 2.2 3.6L9 14l3 3 4.4-1.2C17 14.9 18 13.6 18 12a4 4 0 0 0-4-4" />
+    <path d="M12 17l-3 3" />
+    <circle cx="12" cy="6" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+const VolleyballIcon: React.FC<{ className?: string }> = ({ className = 'w-4 h-4' }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="m4.93 4.93 4.24 4.24" />
+    <path d="m14.83 9.17 4.24-4.24" />
+    <path d="m14.83 14.83 4.24 4.24" />
+    <path d="m9.17 14.83-4.24 4.24" />
+    <circle cx="12" cy="12" r="4" />
+  </svg>
+);
 
 export const AmenitiesSection: React.FC = () => {
   return (
@@ -94,7 +113,7 @@ export const AmenitiesSection: React.FC = () => {
                       <span className="font-mono text-2xl font-extrabold text-[#A3733E]/40">
                         № 02
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-[#EFE8DC] text-[#A3733E] text-xs font-bold border border-[#DFD3C0]">
+                      <span className="px-3 py-1 rounded-full bg-[#EFE8DC] text-[#7A4B1A] text-xs font-bold border border-[#DFD3C0]">
                         Family & Kids Fun
                       </span>
                     </div>
@@ -117,7 +136,7 @@ export const AmenitiesSection: React.FC = () => {
                       <h4 className="font-serif text-xl font-bold text-[#132422] group-hover:text-[#116B7B] transition-colors">
                         Kids Jumping Trampoline & Play Arena
                       </h4>
-                      <p className="text-xs sm:text-sm text-[#344E4A] leading-relaxed mt-1">
+                      <p className="text-xs sm:text-sm text-[#263835] font-medium leading-relaxed mt-1">
                         Heavy-duty steel-sprung circular trampoline with full-height safety netting, safely situated on soft manicured lawn grass for toddlers and children.
                       </p>
                     </div>
@@ -136,122 +155,128 @@ export const AmenitiesSection: React.FC = () => {
               <CinematicReveal delay={0.2} duration={0.8} spring className="h-full flex flex-col">
                 <div className="rounded-3xl bg-white border border-[#E4D9C8] p-5 sm:p-7 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between">
                   <div className="space-y-5">
-                    <div className="flex items-center justify-between border-b border-[#EFE8DC] pb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#EFE8DC] pb-4 gap-2">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono text-2xl font-extrabold text-[#137586]/40">
+                          <span className="font-mono text-2xl font-bold text-[#137586]">
                             № 03
                           </span>
-                          <span className="px-3 py-0.5 rounded-full bg-[#E5F3F5] text-[#137586] text-xs font-bold border border-[#BCE2E7]">
+                          <span className="px-3 py-0.5 rounded-full bg-[#E5F3F5] text-[#0A5462] text-xs font-bold border border-[#BCE2E7]">
                             Inclusive Access
                           </span>
                         </div>
-                        <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#132422] mt-1">
+                        <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#0F1C1A] mt-1">
                           Extra Amenities & Estate Inclusions
                         </h4>
                       </div>
-                      <span className="text-xs font-mono font-semibold text-[#8B7355] hidden sm:block">
+                      <span className="text-xs font-bold text-[#3B2912] bg-[#EFE4D6] px-3.5 py-1.5 rounded-full border border-[#D9C4AC] self-start sm:self-auto shadow-2xs">
                         Complimentary for All In-House Guests
                       </span>
                     </div>
 
-                    {/* Amenities List Grid */}
+                    {/* Amenities List Grid with High-Contrast Typography & Proper Icons */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-1">
-                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                      {/* 1. Grass Badminton Court */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#137586] transition-colors shadow-2xs">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
-                            <Activity className="w-4 h-4 text-[#137586]" />
-                            Grass Badminton Court
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <BadmintonIcon className="w-4 h-4 text-[#137586] shrink-0" />
+                            <span>Grass Badminton Court</span>
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#137586] border border-[#D0E7EB]">
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#DDF1F4] text-[#0A5462] border border-[#A2D3DC]">
                             Gear Free
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
                           Open-air lawn badminton court naturally sheltered by tall bamboo trees. Racquets and shuttles provided at reception.
                         </p>
                       </div>
 
-                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                      {/* 2. Lawn Volleyball Grounds */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#A3733E] transition-colors shadow-2xs">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
-                            <Sun className="w-4 h-4 text-[#A3733E]" />
-                            Lawn Volleyball Grounds
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <VolleyballIcon className="w-4 h-4 text-[#A3733E] shrink-0" />
+                            <span>Lawn Volleyball Grounds</span>
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#A3733E] border border-[#DFD3C0]">
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#F8EFE3] text-[#7A4B1A] border border-[#E0C9AA]">
                             Team Play
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
-                          Expansive manicured lawn area set up for spirited afternoon volleyball matches and team games.
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
+                          Expansive manicured lawn area set up for spirited afternoon volleyball matches and family lawn games.
                         </p>
                       </div>
 
-                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                      {/* 3. Raised Garden Terraces */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#137586] transition-colors shadow-2xs">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-[#137586]" />
-                            Raised Garden Terraces
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <Coffee className="w-4 h-4 text-[#137586] shrink-0" />
+                            <span>Raised Garden Terraces</span>
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#137586] border border-[#D0E7EB]">
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#DDF1F4] text-[#0A5462] border border-[#A2D3DC]">
                             All Day
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
                           Elevated wooden deck seating overlooking the plantation canopies for hot Coorg coffee, evening tea, and reading.
                         </p>
                       </div>
 
-                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                      {/* 4. Evening Bonfire & Stargazing */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#A3733E] transition-colors shadow-2xs">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-[#A3733E]" />
-                            Evening Bonfire & Stargazing
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <Flame className="w-4 h-4 text-[#C26218] shrink-0" />
+                            <span>Evening Bonfire & Stargazing</span>
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#A3733E] border border-[#DFD3C0]">
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#F8EFE3] text-[#7A4B1A] border border-[#E0C9AA]">
                             On Request
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
                           Gather around a crackling wood fire under clear night skies, accompanied by crisp Kodagu estate breezes.
                         </p>
                       </div>
 
-                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                      {/* 5. High-Speed Estate Wi-Fi */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#137586] transition-colors shadow-2xs">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-[#137586]" />
-                            High-Speed Estate Wi-Fi
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <Wifi className="w-4 h-4 text-[#137586] shrink-0" />
+                            <span>High-Speed Estate Wi-Fi</span>
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#137586] border border-[#D0E7EB]">
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#DDF1F4] text-[#0A5462] border border-[#A2D3DC]">
                             Connected
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
                           Reliable wireless internet access across all guest suites, dining patio, and common garden decks for remote work.
                         </p>
                       </div>
 
-                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                      {/* 6. 24/7 Power & Secure Parking */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#14422F] transition-colors shadow-2xs">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
-                            <ShieldCheck className="w-4 h-4 text-[#14422F]" />
-                            24/7 Power & Secure Parking
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <ShieldCheck className="w-4 h-4 text-[#14422F] shrink-0" />
+                            <span>24/7 Power & Secure Parking</span>
                           </span>
-                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#14422F] border border-[#C5DACF]">
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#E1F3EA] text-[#0E523A] border border-[#A8DEC2]">
                             Full Security
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
                           Generator backup for round-the-clock uninterrupted power, continuous hot water, and gated parking with driver rest facilities.
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-4 border-t border-[#EFE8DC] flex flex-wrap items-center justify-between gap-2 text-xs text-[#6B5E50]">
-                    <div className="flex items-center gap-2 font-medium">
-                      <CheckCircle2 className="w-4 h-4 text-[#14422F]" />
+                  <div className="pt-4 mt-4 border-t border-[#EFE8DC] flex flex-wrap items-center justify-between gap-2 text-xs text-[#223633] font-semibold">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#14422F] shrink-0" />
                       <span>All sports equipment & board games available on request at reception</span>
                     </div>
                   </div>

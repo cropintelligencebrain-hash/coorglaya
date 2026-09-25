@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Sparkles, ArrowUpRight, Waves, Clock, ShieldCheck, Sun, Smile, 
-  Activity, CheckCircle2, Coffee, HeartHandshake, Eye
+  Activity, CheckCircle2, Coffee, HeartHandshake, Eye, MapPin
 } from 'lucide-react';
 import { AmenitiesSection } from '../components/sections/AmenitiesSection';
 import { PageHeader } from '../components/common/PageHeader';
@@ -134,8 +134,9 @@ export const AmenitiesPage: React.FC<AmenitiesPageProps> = ({ onOpenEnquiry }) =
                       {item.title}
                     </h3>
 
-                    <span className="text-xs font-bold text-[#A3733E] block">
-                      📍 {item.location}
+                    <span className="text-xs font-semibold text-[#A3733E] flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-[#137586] shrink-0" />
+                      <span>{item.location}</span>
                     </span>
 
                     <p className="text-xs text-[#2C413E] font-normal leading-relaxed prose-pretty">

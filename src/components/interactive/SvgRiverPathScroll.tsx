@@ -105,8 +105,9 @@ export const SvgRiverPathScroll: React.FC = () => {
             </div>
 
             <div className="pt-2 border-t border-[#E4D9C8]/60 flex items-center justify-between">
-              <span className="text-[11px] font-medium text-[#635546]">
-                🕒 {item.bestTime}
+              <span className="text-[11px] font-medium text-[#635546] flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-[#A3733E] shrink-0" />
+                <span>{item.bestTime}</span>
               </span>
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${item.googleMapsQuery}`}

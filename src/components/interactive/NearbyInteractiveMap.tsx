@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Compass, Clock, ExternalLink, 
-  Navigation, Car, Mountain, Lightbulb
+  Navigation, Car, Mountain, Lightbulb, Info
 } from 'lucide-react';
 import { 
   NEARBY_DESTINATIONS_DATA, 
@@ -47,8 +47,9 @@ export const NearbyInteractiveMap: React.FC = () => {
           })}
         </div>
 
-        <span className="text-xs font-semibold text-[#116B7B]">
-          💡 Click any 2D emoji on map to inspect
+        <span className="text-xs font-semibold text-[#116B7B] flex items-center gap-1.5">
+          <Info className="w-3.5 h-3.5 shrink-0" />
+          <span>Click any destination landmark on the map to inspect</span>
         </span>
       </div>
 
