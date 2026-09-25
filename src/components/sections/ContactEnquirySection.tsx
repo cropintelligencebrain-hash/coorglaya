@@ -9,10 +9,10 @@ import { springTransition } from '../../utils/motionVariants';
 export const ContactEnquirySection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
     phone: '',
+    checkIn: '',
+    checkOut: '',
     guests: '2 Guests',
-    date: '',
     message: '',
   });
 
@@ -32,10 +32,10 @@ export const ContactEnquirySection: React.FC = () => {
     const summary =
       `*Reservation Enquiry — Coorg Laya Resort*\n\n` +
       `• *Name:* ${formData.name}\n` +
-      `• *Email:* ${formData.email}\n` +
       `• *Phone:* ${formData.phone}\n` +
-      `• *Guests:* ${formData.guests}\n` +
-      `• *Target Date:* ${formData.date || 'Flexible'}\n\n` +
+      `• *Check-in Date:* ${formData.checkIn || 'Flexible'}\n` +
+      `• *Check-out Date:* ${formData.checkOut || 'Flexible'}\n` +
+      `• *Guests:* ${formData.guests}\n\n` +
       `*Notes:* ${formData.message || 'No additional notes'}`;
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
@@ -45,7 +45,7 @@ export const ContactEnquirySection: React.FC = () => {
       setFormState('success');
       setTimeout(() => {
         setFormState('idle');
-        setFormData({ name: '', email: '', phone: '', guests: '2 Guests', date: '', message: '' });
+        setFormData({ name: '', phone: '', checkIn: '', checkOut: '', guests: '2 Guests', message: '' });
       }, 4000);
     }, 600);
   };
@@ -171,9 +171,9 @@ export const ContactEnquirySection: React.FC = () => {
             </div>
           </motion.a>
 
-          {/* 4. Location & Other Things Card */}
+          {/* 4. Location & Google Maps Card */}
           <motion.a
-            href="https://maps.google.com/?q=Kushalnagar+Coorg+Karnataka"
+            href="https://maps.google.com/maps?q=12.4349915%2C75.9235081&z=17&hl=en"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ y: -4, scale: 1.02 }}
@@ -186,21 +186,21 @@ export const ContactEnquirySection: React.FC = () => {
               </div>
               <div>
                 <span className="text-[10px] font-bold text-[#2D4744] uppercase tracking-wider block">
-                  4. Location & Hours
+                  4. Full Address & Location
                 </span>
-                <h4 className="font-serif text-lg sm:text-xl font-bold text-[#131E1C]">
-                  Kushalnagar, Coorg
+                <h4 className="font-serif text-base sm:text-lg font-bold text-[#131E1C] leading-snug">
+                  Coorg Laya Resort
                 </h4>
-                <p className="text-xs text-[#2D4744] mt-1 font-medium">
-                  Near Kaveri River Basin
+                <p className="text-xs text-[#2D4744] mt-1 font-medium leading-relaxed">
+                  Teppadakandi, Siddapura Main Road, Basavanahalli Village, Gudde Hosur Post, Kushalnagar - 571234
                 </p>
-                <p className="text-[11px] text-[#2D4744] mt-0.5 font-medium">
-                  Check-in 1 PM · Check-out 11 AM
+                <p className="text-[11px] text-[#A3733E] mt-0.5 font-bold">
+                  Kodagu, Karnataka
                 </p>
               </div>
             </div>
             <div className="pt-4 mt-3 border-t border-[#E4D9C8] flex items-center justify-between text-xs font-bold text-[#132422]">
-              <span>Open in Google Maps</span>
+              <span>Get Directions on Maps</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </div>
           </motion.a>
@@ -238,77 +238,77 @@ export const ContactEnquirySection: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#132422] block">Full Name *</label>
+                  <label className="text-xs font-bold text-[#0F1C1A] block">Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your Name"
-                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#1A96AA]"
+                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#137586]"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#132422] block">Email Address *</label>
+                  <label className="text-xs font-bold text-[#0F1C1A] block">Phone Number *</label>
                   <input
-                    type="email"
+                    type="tel"
                     required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="name@example.com"
-                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#1A96AA]"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+91 98765 43210"
+                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#137586]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#132422] block">Phone / WhatsApp *</label>
+                  <label className="text-xs font-bold text-[#0F1C1A] block">Check-in Date *</label>
                   <input
-                    type="tel"
+                    type="date"
                     required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+91 74116 95533"
-                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#1A96AA]"
+                    value={formData.checkIn}
+                    onChange={(e) => setFormData({ ...formData, checkIn: e.target.value })}
+                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#137586]"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#132422] block">Party Size</label>
-                  <select
-                    value={formData.guests}
-                    onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
-                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#1A96AA]"
-                  >
-                    <option value="2 Guests">2 Guests (Couple / Deluxe)</option>
-                    <option value="4-8 Guests">4–8 Guests (Family / Verandah)</option>
-                    <option value="15-30 Guests">15–30 Guests (Group Stays)</option>
-                    <option value="Full Resort Buyout">Full Resort Buyout (~45 Guests)</option>
-                    <option value="Lawn Event (50-500 Guests)">Lawn Celebration (50–500 Guests)</option>
-                  </select>
+                  <label className="text-xs font-bold text-[#0F1C1A] block">Check-out Date *</label>
+                  <input
+                    type="date"
+                    required
+                    value={formData.checkOut}
+                    onChange={(e) => setFormData({ ...formData, checkOut: e.target.value })}
+                    className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#137586]"
+                  />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#132422] block">Target Date of Stay</label>
-                <input
-                  type="date"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#1A96AA]"
-                />
+                <label className="text-xs font-bold text-[#0F1C1A] block">Number of Guests</label>
+                <select
+                  value={formData.guests}
+                  onChange={(e) => setFormData({ ...formData, guests: e.target.value })}
+                  className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium focus:outline-none focus:border-[#137586]"
+                >
+                  <option value="2 Guests">2 Guests (Couples / Living Suite)</option>
+                  <option value="3-4 Guests">3–4 Guests (Family Twin Suite)</option>
+                  <option value="5-10 Guests">5–10 Guests (Family Group)</option>
+                  <option value="15-45 Guests (Full Buyout)">15–45 Guests (Full 15-Suite Buyout)</option>
+                  <option value="50-500 Guests (Lawn Event)">50–500 Guests (Open Lawn Celebration)</option>
+                </select>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-bold text-[#132422] block">Special Requirements / Notes</label>
+                <label className="text-xs font-bold text-[#0F1C1A] block">Message</label>
                 <textarea
                   rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell us about your room preferences, food requirements, or event plans..."
-                  className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium resize-none focus:outline-none focus:border-[#1A96AA]"
+                  className="w-full px-4 py-3 text-base sm:text-sm bg-white rounded-xl border border-[#D5C7B2] text-[#132422] font-medium resize-none focus:outline-none focus:border-[#137586]"
                 />
               </div>
 
@@ -318,30 +318,30 @@ export const ContactEnquirySection: React.FC = () => {
                 whileHover={formState === 'idle' ? { scale: 1.02 } : {}}
                 whileTap={formState === 'idle' ? { scale: 0.98 } : {}}
                 transition={springTransition}
-                className="w-full py-3.5 px-6 rounded-2xl bg-[#132422] hover:bg-[#1E3633] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-2xl bg-[#14422F] hover:bg-[#1A543C] text-white font-bold text-xs sm:text-sm tracking-wider uppercase shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 {formState === 'loading' && (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Preparing Request...</span>
+                    <span>Connecting to WhatsApp...</span>
                   </>
                 )}
                 {formState === 'success' && (
                   <>
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                    <span>Enquiry Dispatched · We will reach out shortly</span>
+                    <CheckCircle2 className="w-4 h-4 text-[#D4AF37]" />
+                    <span>Enquiry Sent to WhatsApp</span>
                   </>
                 )}
                 {formState === 'idle' && (
                   <>
-                    <Send className="w-4 h-4 text-[#D4AF37]" />
-                    <span>Submit Reservation Request</span>
+                    <MessageSquare className="w-4 h-4 text-[#25D366]" />
+                    <span>Send Enquiry</span>
+                    <ArrowUpRight className="w-4 h-4 text-[#D4AF37]" />
                   </>
                 )}
               </motion.button>
             </form>
           </div>
-
         </div>
 
       </div>

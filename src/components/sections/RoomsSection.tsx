@@ -170,15 +170,17 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
               </div>
             )}
 
-            <motion.button
+            <motion.a
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={onOpenEnquiry}
+              href="https://wa.me/917411695533?text=Hello%20Coorg%20Laya%2C%20I%20would%20like%20to%20enquire%20about%20reserving%20all%2015%20suites"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-3 rounded-full bg-[#137586] hover:bg-[#105B69] text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-md flex items-center gap-2 cursor-pointer"
             >
               <span>Reserve All 15 Suites</span>
               <ArrowUpRight className="w-4 h-4" />
-            </motion.button>
+            </motion.a>
           </CinematicReveal>
         </div>
 
@@ -210,27 +212,45 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
 
                       {/* Content: Required Info Only */}
                       <div className="p-4 space-y-2">
-                        <h3 className="font-serif text-base sm:text-lg font-bold text-[#131E1C]">
-                          {suite.name}
-                        </h3>
+                        <div className="flex items-center justify-between gap-1">
+                          <h3 className="font-serif text-base sm:text-lg font-bold text-[#131E1C]">
+                            {suite.name}
+                          </h3>
+                        </div>
                         <p className="text-xs text-[#2D4744] font-semibold">
                           {suite.bedType} · {suite.view}
                         </p>
-                        <p className="text-xs text-[#314240] line-clamp-2 leading-relaxed pt-1">
+                        <p className="text-xs text-[#314240] line-clamp-2 leading-relaxed pt-0.5">
                           {suite.description}
                         </p>
+                        {/* Key Facilities Badges */}
+                        <div className="flex flex-wrap gap-1.5 pt-1.5">
+                          {suite.highlights.slice(0, 2).map((feat, fIdx) => (
+                            <span key={fIdx} className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-[#FAF6EF] text-[#137586] border border-[#E0D7C8]">
+                              {feat}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Direct Reserve Action */}
-                    <div className="p-4 pt-0">
-                      <button
-                        onClick={onOpenEnquiry}
-                        className="w-full py-2.5 rounded-full bg-[#137586] hover:bg-[#0E5461] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+                    {/* Action Buttons: View Room / Book Now */}
+                    <div className="p-4 pt-0 grid grid-cols-2 gap-2">
+                      <Link
+                        to="/rooms"
+                        className="py-2.5 rounded-full bg-[#FAF6EF] hover:bg-[#EFE8DC] text-[#137586] border border-[#137586]/30 text-xs font-bold tracking-wider uppercase transition-all flex items-center justify-center gap-1 cursor-pointer text-center"
                       >
-                        <span>Reserve Suite</span>
+                        <span>View Room</span>
+                      </Link>
+                      <a
+                        href={`https://wa.me/917411695533?text=${encodeURIComponent(`Hello Coorg Laya, I would like to book the ${suite.name}.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-2.5 rounded-full bg-[#137586] hover:bg-[#0E5461] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-sm flex items-center justify-center gap-1 cursor-pointer active:scale-98"
+                      >
+                        <span>Book Now</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </CinematicReveal>
@@ -345,13 +365,15 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
 
                   {/* CTA Button */}
                   <div className="p-4 pt-0">
-                    <button
-                      onClick={onOpenEnquiry}
+                    <a
+                      href={`https://wa.me/917411695533?text=${encodeURIComponent(`Hello Coorg Laya, I would like to reserve the ${suite.name}.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-full py-2.5 rounded-full bg-[#137586] hover:bg-[#105B69] text-white text-xs font-bold tracking-wider uppercase transition-colors shadow-sm flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
                     >
                       <span>Reserve This Suite</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -373,7 +395,14 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
           </div>
         ) : viewMode === 'focus' ? (
           /* FULL PAGE VIEW: Framer Focus Gallery (In-Place Scroll & Click Focus) */
-          <SuiteFocusGallery suites={suites} onBookNow={() => onOpenEnquiry()} />
+          <SuiteFocusGallery 
+            suites={suites} 
+            onBookNow={(suiteId) => {
+              const matchedSuite = suites.find((s) => s.id === suiteId);
+              const suiteName = matchedSuite?.name || 'Luxury Suite';
+              window.open(`https://wa.me/917411695533?text=${encodeURIComponent(`Hello Coorg Laya, I would like to book the ${suiteName}.`)}`, '_blank');
+            }} 
+          />
         ) : (
           /* FULL PAGE DESKTOP VIEW: 4-Column Flip Inspection Cards Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -381,7 +410,9 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
               <CinematicReveal key={suite.id} delay={idx * 0.08} duration={0.6}>
                 <SuiteInspectionCard3D
                   suite={suite}
-                  onBookNow={() => onOpenEnquiry()}
+                  onBookNow={() => {
+                    window.open(`https://wa.me/917411695533?text=${encodeURIComponent(`Hello Coorg Laya, I would like to book the ${suite.name}.`)}`, '_blank');
+                  }}
                 />
               </CinematicReveal>
             ))}

@@ -53,7 +53,7 @@ export const LayaVideoHeroSection: React.FC<LayaVideoHeroSectionProps> = ({
   }, []);
 
   const scrollToNext = () => {
-    const nextSection = document.getElementById('pillars-directory') || document.getElementById('rooms-section');
+    const nextSection = document.getElementById('rooms-section') || document.getElementById('rooms');
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -71,23 +71,23 @@ export const LayaVideoHeroSection: React.FC<LayaVideoHeroSectionProps> = ({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/videos/hero-poster.jpg"
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 [object-position:32%_50%] portrait:[object-position:32%_50%] landscape:[object-position:50%_50%]"
+          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 object-center"
           aria-hidden="true"
         >
           <source src="/videos/hero-loop.mp4" type="video/mp4" />
           <img 
             src="/videos/hero-poster.jpg" 
             alt="Coorg Laya Resort morning ambiance" 
-            className="w-full h-full object-cover [object-position:32%_50%] portrait:[object-position:32%_50%] landscape:[object-position:50%_50%]"
+            className="w-full h-full object-cover object-center"
           />
         </video>
       ) : (
         <img 
           src="/videos/hero-poster.jpg" 
           alt="Coorg Laya Resort morning ambiance" 
-          className="absolute inset-0 w-full h-full object-cover [object-position:32%_50%] portrait:[object-position:32%_50%] landscape:[object-position:50%_50%]"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
       )}
 
@@ -109,15 +109,17 @@ export const LayaVideoHeroSection: React.FC<LayaVideoHeroSectionProps> = ({
           />
         </div>
 
-        {/* Minimal Luxury CTA */}
+        {/* Minimal Luxury CTA - Direct WhatsApp Booking */}
         <div className="mt-4 sm:mt-8 flex items-center justify-center">
-          <button
-            onClick={onOpenEnquiry}
-            className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#FAF6EF]/95 hover:bg-white text-[#131E1C] font-semibold text-xs sm:text-sm tracking-[0.18em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 backdrop-blur-sm"
+          <a
+            href="https://wa.me/917411695533?text=Hello%20Coorg%20Laya%2C%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-[#FAF6EF]/95 hover:bg-white text-[#131E1C] font-semibold text-xs sm:text-sm tracking-[0.18em] uppercase shadow-[0_10px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 backdrop-blur-sm cursor-pointer"
           >
-            <span>Reserve Your Stay</span>
+            <span>Book Your Stay</span>
             <ArrowUpRight className="w-4 h-4 text-[#734B29] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </button>
+          </a>
         </div>
       </div>
 

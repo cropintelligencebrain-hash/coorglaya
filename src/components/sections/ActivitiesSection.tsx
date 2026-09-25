@@ -205,18 +205,18 @@ export const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({ onOpenEnqu
                         </div>
                       </div>
 
-                      <motion.button
+                      <motion.a
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (onOpenEnquiry) onOpenEnquiry();
-                        }}
-                        className="clay-btn-water text-xs font-bold shadow-md cursor-pointer !py-2 !px-4"
+                        href={`https://wa.me/917411695533?text=${encodeURIComponent(`Hello Coorg Laya, I would like to enquire about the ${act.title} activity.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="clay-btn-water text-xs font-bold shadow-md cursor-pointer !py-2 !px-4 inline-flex items-center gap-1.5"
                       >
                         <span>Plan Activity</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
-                      </motion.button>
+                      </motion.a>
                     </div>
                   </motion.div>
                 ) : (
@@ -333,17 +333,17 @@ export const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({ onOpenEnqu
                   </div>
                 </div>
 
-                {/* Action button */}
+                {/* Action button - WhatsApp */}
                 <div className="pt-4">
-                  <button
-                    onClick={() => {
-                      if (onOpenEnquiry) onOpenEnquiry();
-                    }}
+                  <a
+                    href={`https://wa.me/917411695533?text=${encodeURIComponent(`Hello Coorg Laya, I would like to enquire about the ${act.title} activity.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-2.5 rounded-full bg-[#137586] hover:bg-[#105B69] text-white text-xs font-bold tracking-wider uppercase transition-colors shadow-sm flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
                   >
                     <span>Plan This Activity</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}

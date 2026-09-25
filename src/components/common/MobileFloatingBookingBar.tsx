@@ -41,15 +41,17 @@ export const MobileFloatingBookingBar: React.FC<MobileFloatingBookingBarProps> =
           </a>
         </div>
 
-        {/* Right: Direct Reserve CTA */}
-        <button
-          onClick={onOpenEnquiry}
+        {/* Right: Direct Reserve CTA - WhatsApp */}
+        <a
+          href="https://wa.me/917411695533?text=Hello%20Coorg%20Laya%2C%20I%20would%20like%20to%20enquire%20about%20suite%20availability"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#14422F] to-[#1A543C] hover:from-[#1A543C] hover:to-[#226B4D] text-[#FAF6EF] font-bold text-xs tracking-wider uppercase flex items-center gap-1.5 border border-[#D4AF37]/50 shadow-md active:scale-95 transition-all cursor-pointer"
         >
           <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
           <span>Reserve</span>
           <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37]" />
-        </button>
+        </a>
       </div>
     </motion.div>
   );

@@ -147,15 +147,17 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
 
           {/* Action Area: Book Stay + 3 Horizontal Bars Menu Toggle */}
           <div className="flex items-center gap-2 shrink-0">
-            {/* Direct Booking CTA */}
-            <button
-              onClick={onOpenEnquiry}
+            {/* Direct Booking CTA - WhatsApp */}
+            <a
+              href="https://wa.me/917411695533?text=Hello%20Coorg%20Laya%2C%20I%20would%20like%20to%20enquire%20about%20booking%20a%20stay"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold text-[#FAF6EF] bg-[#14422F] hover:bg-[#1A543C] border border-[#D4AF37]/50 shadow-sm transition-all duration-200 flex items-center gap-1.5 cursor-pointer active:scale-95"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Book Stay</span>
               <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37]" />
-            </button>
+            </a>
 
             {/* 3 Horizontal Bars Menu Toggle Button (Mobile Only to prevent duplicate desktop loop) */}
             <button
@@ -302,16 +304,16 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
                     <span>WhatsApp Concierge</span>
                   </a>
 
-                  <button
-                    onClick={() => {
-                      setMenuOpen(false);
-                      onOpenEnquiry();
-                    }}
+                  <a
+                    href="https://wa.me/917411695533?text=Hello%20Coorg%20Laya%2C%20I%20would%20like%20to%20enquire%20about%20suite%20availability"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
                     className="py-2.5 px-3 rounded-2xl bg-[#14422F] hover:bg-[#1A543C] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-[#D4AF37]/50 shadow-sm cursor-pointer"
                   >
                     <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                    <span>Reserve Online</span>
-                  </button>
+                    <span>Reserve via WhatsApp</span>
+                  </a>
                 </div>
               </div>
             </motion.div>

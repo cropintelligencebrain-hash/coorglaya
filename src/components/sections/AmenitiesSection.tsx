@@ -1,6 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Waves, Sparkles, Smile, ArrowUpRight, CheckCircle2, Coffee, Flame, Wifi, ShieldCheck } from 'lucide-react';
+import { Waves, Sparkles, Smile, ArrowUpRight, CheckCircle2, Coffee, Flame, Wifi, ShieldCheck, Utensils } from 'lucide-react';
 import { ClayImage } from '../common/ClayImage';
 import { FluidWaterCard } from '../3d/FluidWaterCard';
 import { CinematicReveal } from '../common/CinematicReveal';
@@ -269,6 +268,22 @@ export const AmenitiesSection: React.FC = () => {
                         </div>
                         <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
                           Generator backup for round-the-clock uninterrupted power, continuous hot water, and gated parking with driver rest facilities.
+                        </p>
+                      </div>
+
+                      {/* 7. Dining & Food Service */}
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E0D7C8] hover:border-[#137586] transition-colors shadow-2xs sm:col-span-2">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#0F1C1A] flex items-center gap-2">
+                            <Utensils className="w-4 h-4 text-[#137586] shrink-0" />
+                            <span>Dining & Food Service</span>
+                          </span>
+                          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#DDF1F4] text-[#0A5462] border border-[#A2D3DC]">
+                            Estate Kitchen
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#223633] font-medium leading-relaxed">
+                          Wholesome South Indian breakfast, freshly brewed estate coffee, and authentic Kodagu buffet meals served on the open garden verandah.
                         </p>
                       </div>
                     </div>
