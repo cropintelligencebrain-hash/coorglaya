@@ -82,315 +82,183 @@ export const AmenitiesSection: React.FC = () => {
             </div>
           </CinematicReveal>
 
-          {/* MOBILE VIEW: Horizontal Snap Deck for Secondary Amenities (02 - 05) */}
-          <div className="lg:hidden space-y-6">
-            <div className="flex items-center justify-between px-1 pt-2">
-              <span className="text-xs font-mono font-bold text-[#A3733E]">
-                More Resort Spaces · Swipe to explore
-              </span>
-              <span className="text-xs text-[#586E6B] font-semibold">4 Spaces</span>
-            </div>
-
-            <div className="snap-touch-track no-scrollbar gap-4 px-1 py-1">
-              {/* Item 02: Kids Trampoline */}
-              <div className="snap-touch-item w-[84vw] max-w-[340px] rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-4 shadow-md flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xl font-extrabold text-[#A3733E]/40">№ 02</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#EFE8DC] text-[#A3733E] text-[10px] font-bold border border-[#DFD3C0]">
-                      Family Fun
-                    </span>
-                  </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8DFD1]">
-                    <img
-                      src="/images/amenities/kids-play-trampoline.png"
-                      alt="Kids Play Area & Trampoline"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#635546] mb-1">
-                      <Smile className="w-3 h-3 text-[#A3733E]" />
-                      <span>03:30 PM · Afternoon Play</span>
-                    </div>
-                    <h4 className="font-serif text-base font-bold text-[#132422]">
-                      Kids Jumping Trampoline & Play Arena
-                    </h4>
-                    <p className="text-xs text-[#344E4A] leading-relaxed mt-1 line-clamp-2">
-                      Heavy-duty steel-sprung trampoline with safety netting surrounded by soft lawn grass.
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-3 mt-2 border-t border-[#E4D9C8] flex items-center justify-between text-[11px] font-bold text-[#116B7B]">
-                  <span>Enclosed Safety Netting</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
-                </div>
-              </div>
-
-              {/* Item 03: Badminton Court */}
-              <div className="snap-touch-item w-[84vw] max-w-[340px] rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-4 shadow-md flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xl font-extrabold text-[#A3733E]/40">№ 03</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#E5F3F5] text-[#116B7B] text-[10px] font-bold border border-[#BCE2E7]">
-                      Active Sports
-                    </span>
-                  </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8DFD1]">
-                    <img
-                      src="/images/amenities/badminton-court.png"
-                      alt="Bamboo Lawn Badminton Court"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#635546] mb-1">
-                      <Activity className="w-3 h-3 text-[#1A96AA]" />
-                      <span>04:30 PM · Golden Hour Rally</span>
-                    </div>
-                    <h4 className="font-serif text-base font-bold text-[#132422]">
-                      Bamboo Lawn Badminton Court
-                    </h4>
-                    <p className="text-xs text-[#344E4A] leading-relaxed mt-1 line-clamp-2">
-                      Lively friendly matches on grass courts naturally sheltered by green bamboo canopies.
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-3 mt-2 border-t border-[#E4D9C8] flex items-center justify-between text-[11px] font-bold text-[#116B7B]">
-                  <span>Racquets Provided Free</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
-                </div>
-              </div>
-
-              {/* Item 04: Volleyball Lawn */}
-              <div className="snap-touch-item w-[84vw] max-w-[340px] rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-4 shadow-md flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xl font-extrabold text-[#A3733E]/40">№ 04</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#EFE8DC] text-[#A3733E] text-[10px] font-bold border border-[#DFD3C0]">
-                      Open Grounds
-                    </span>
-                  </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8DFD1]">
-                    <img
-                      src="/images/resort/garden-lawn.jpeg"
-                      alt="Outdoor Volleyball Lawn"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#635546] mb-1">
-                      <Sun className="w-3 h-3 text-[#A3733E]" />
-                      <span>05:00 PM · Sunset Rallies</span>
-                    </div>
-                    <h4 className="font-serif text-base font-bold text-[#132422]">
-                      Outdoor Volleyball Lawn
-                    </h4>
-                    <p className="text-xs text-[#344E4A] leading-relaxed mt-1 line-clamp-2">
-                      Spirited team rallies and social matches across expansive open lawn grounds.
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-3 mt-2 border-t border-[#E4D9C8] flex items-center justify-between text-[11px] font-bold text-[#116B7B]">
-                  <span>Spacious Green Lawns</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
-                </div>
-              </div>
-
-              {/* Item 05: Raised Garden Terraces */}
-              <div className="snap-touch-item w-[84vw] max-w-[340px] rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-4 shadow-md flex flex-col justify-between">
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xl font-extrabold text-[#A3733E]/40">№ 05</span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#E5F3F5] text-[#116B7B] text-[10px] font-bold border border-[#BCE2E7]">
-                      Coffee & Decks
-                    </span>
-                  </div>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8DFD1]">
-                    <img
-                      src="/images/resort/garden-terrace.jpeg"
-                      alt="Raised Garden Terraces"
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 text-[11px] font-bold text-[#635546] mb-1">
-                      <Clock className="w-3 h-3 text-[#1A96AA]" />
-                      <span>All Day · Open Access</span>
-                    </div>
-                    <h4 className="font-serif text-base font-bold text-[#132422]">
-                      Raised Garden Terraces
-                    </h4>
-                    <p className="text-xs text-[#344E4A] leading-relaxed mt-1 line-clamp-2">
-                      Elevated seating platforms for hot Coorg coffee, evening tea, and conversations.
-                    </p>
-                  </div>
-                </div>
-                <div className="pt-3 mt-2 border-t border-[#E4D9C8] flex items-center justify-between text-[11px] font-bold text-[#116B7B]">
-                  <span>Plantation Views</span>
-                  <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* DESKTOP VIEW: Asymmetrical Mid & Bottom Tiers */}
-          <div className="hidden lg:block space-y-8">
-            {/* Items 02 & 03: Asymmetrical Mid Tier (Tall Portrait + Widescreen Landscape) */}
-            <div className="grid grid-cols-12 gap-8 items-stretch">
-              
-              {/* Item 02: Kids Trampoline (5 Cols - Tall Editorial Card) */}
-              <div className="col-span-5">
-                <CinematicReveal delay={0.1} duration={0.8} spring className="h-full">
-                  <div className="rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-between group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-2xl font-extrabold text-[#A3733E]/30">
-                          № 02
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-[#EFE8DC] text-[#A3733E] text-xs font-bold border border-[#DFD3C0]">
-                          Family Fun
-                        </span>
-                      </div>
-
-                      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8DFD1] shadow-sm">
-                        <ClayImage
-                          src="/images/amenities/kids-play-trampoline.png"
-                          alt="Kids Play Area & Trampoline at Coorg Laya"
-                          aspectRatio="4:3"
-                          clayVariant="sand"
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                        />
-                      </div>
-
-                      <div>
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-[#635546] mb-1">
-                          <Smile className="w-3.5 h-3.5 text-[#A3733E]" />
-                          <span>03:30 PM · Afternoon Play</span>
-                        </div>
-                        <h4 className="font-serif text-xl font-bold text-[#132422] group-hover:text-[#116B7B] transition-colors">
-                          Kids Jumping Trampoline & Play Arena
-                        </h4>
-                        <p className="text-xs text-[#344E4A] leading-relaxed mt-1">
-                          Heavy-duty steel-sprung trampoline with safety netting surrounded by soft manicured lawn grass.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-[#E4D9C8] flex items-center justify-between text-[11px] font-bold text-[#116B7B]">
-                      <span>Enclosed Safety Netting</span>
-                      <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
-                    </div>
-                  </div>
-                </CinematicReveal>
-              </div>
-
-              {/* Item 03: Bamboo Lawn Badminton (7 Cols - Widescreen Landscape Card) */}
-              <div className="col-span-7">
-                <CinematicReveal delay={0.2} duration={0.8} spring className="h-full">
-                  <div className="rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col justify-between group">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-2xl font-extrabold text-[#A3733E]/30">
-                          № 03
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-[#E5F3F5] text-[#116B7B] text-xs font-bold border border-[#BCE2E7]">
-                          Active Sports
-                        </span>
-                      </div>
-
-                      <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-[#E8DFD1] shadow-sm">
-                        <ClayImage
-                          src="/images/amenities/badminton-court.png"
-                          alt="Bamboo Lawn Badminton Court at Coorg Laya"
-                          aspectRatio="16:9"
-                          clayVariant="water"
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                        />
-                      </div>
-
-                      <div>
-                        <div className="flex items-center gap-1.5 text-xs font-bold text-[#635546] mb-1">
-                          <Activity className="w-3.5 h-3.5 text-[#1A96AA]" />
-                          <span>04:30 PM · Golden Hour Rally</span>
-                        </div>
-                        <h4 className="font-serif text-xl font-bold text-[#132422] group-hover:text-[#116B7B] transition-colors">
-                          Bamboo Lawn Badminton Court
-                        </h4>
-                        <p className="text-xs text-[#344E4A] leading-relaxed mt-1">
-                          Lively friendly matches on grass courts naturally sheltered by towering green bamboo canopies.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-[#E4D9C8] flex items-center justify-between text-[11px] font-bold text-[#116B7B]">
-                      <span>Racquets & Shuttles Provided Free</span>
-                      <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
-                    </div>
-                  </div>
-                </CinematicReveal>
-              </div>
-
-            </div>
-
-            {/* Items 04 & 05: Staggered Bottom Tier (Volleyball Lawn & Raised Garden Terraces) */}
-            <div className="grid grid-cols-2 gap-8">
-              
-              {/* Item 04: Volleyball Lawn */}
-              <CinematicReveal delay={0.15} spring>
-                <div className="rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                  <div className="space-y-3">
+          {/* Mid Tier: Kids Trampoline (Featured) + Extra Amenities & Estate Features Showcase */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+            
+            {/* Item 02: Kids Trampoline & Play Arena (5 Cols on Desktop) */}
+            <div className="lg:col-span-5 flex flex-col">
+              <CinematicReveal delay={0.1} duration={0.8} spring className="h-full flex flex-col">
+                <div className="rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between group">
+                  <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-2xl font-extrabold text-[#A3733E]/30">№ 04</span>
-                      <span className="px-3 py-1 rounded-full bg-[#EFE8DC] text-[#A3733E] text-xs font-bold border border-[#DFD3C0]">Open Grounds</span>
+                      <span className="font-mono text-2xl font-extrabold text-[#A3733E]/40">
+                        № 02
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-[#EFE8DC] text-[#A3733E] text-xs font-bold border border-[#DFD3C0]">
+                        Family & Kids Fun
+                      </span>
                     </div>
-                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#E8DFD1]">
+
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#E8DFD1] shadow-sm">
                       <ClayImage
-                        src="/images/resort/garden-lawn.jpeg"
-                        alt="Outdoor Volleyball Lawn"
-                        aspectRatio="16:10"
+                        src="/images/amenities/kids-play-trampoline.png"
+                        alt="Kids Play Area & Trampoline at Coorg Laya"
+                        aspectRatio="4:3"
                         clayVariant="sand"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
-                    <h4 className="font-serif text-lg font-bold text-[#132422] group-hover:text-[#116B7B] transition-colors">Outdoor Volleyball Lawn</h4>
-                    <p className="text-xs text-[#344E4A] leading-relaxed">Spirited team rallies and social matches across expansive open lawn grounds.</p>
+
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-[#635546] mb-1">
+                        <Smile className="w-3.5 h-3.5 text-[#A3733E]" />
+                        <span>Afternoon to Sunset · Open Play</span>
+                      </div>
+                      <h4 className="font-serif text-xl font-bold text-[#132422] group-hover:text-[#116B7B] transition-colors">
+                        Kids Jumping Trampoline & Play Arena
+                      </h4>
+                      <p className="text-xs sm:text-sm text-[#344E4A] leading-relaxed mt-1">
+                        Heavy-duty steel-sprung circular trampoline with full-height safety netting, safely situated on soft manicured lawn grass for toddlers and children.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-[#E4D9C8] flex items-center justify-between text-xs font-bold text-[#116B7B]">
+                    <span>Enclosed 360° Safety Enclosure</span>
+                    <Sparkles className="w-3.5 h-3.5 text-[#1A96AA]" />
                   </div>
                 </div>
               </CinematicReveal>
-
-              {/* Item 05: Raised Garden Terraces */}
-              <CinematicReveal delay={0.25} spring>
-                <div className="rounded-3xl bg-[#FAF6EF] border border-[#E4D9C8] p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-2xl font-extrabold text-[#A3733E]/30">№ 05</span>
-                      <span className="px-3 py-1 rounded-full bg-[#E5F3F5] text-[#116B7B] text-xs font-bold border border-[#BCE2E7]">Coffee & Decks</span>
-                    </div>
-                    <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#E8DFD1]">
-                      <ClayImage
-                        src="/images/resort/garden-terrace.jpeg"
-                        alt="Raised Garden Terraces"
-                        aspectRatio="16:10"
-                        clayVariant="water"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
-                      />
-                    </div>
-                    <h4 className="font-serif text-lg font-bold text-[#132422] group-hover:text-[#116B7B] transition-colors">Raised Garden Terraces</h4>
-                    <p className="text-xs text-[#344E4A] leading-relaxed">Elevated seating platforms for hot Coorg coffee, evening tea, and starlit conversations.</p>
-                  </div>
-                </div>
-              </CinematicReveal>
-
             </div>
+
+            {/* Extra Amenities & Estate Inclusions Directory (7 Cols on Desktop) */}
+            <div className="lg:col-span-7 flex flex-col">
+              <CinematicReveal delay={0.2} duration={0.8} spring className="h-full flex flex-col">
+                <div className="rounded-3xl bg-white border border-[#E4D9C8] p-5 sm:p-7 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col justify-between">
+                  <div className="space-y-5">
+                    <div className="flex items-center justify-between border-b border-[#EFE8DC] pb-4">
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-2xl font-extrabold text-[#137586]/40">
+                            № 03
+                          </span>
+                          <span className="px-3 py-0.5 rounded-full bg-[#E5F3F5] text-[#137586] text-xs font-bold border border-[#BCE2E7]">
+                            Inclusive Access
+                          </span>
+                        </div>
+                        <h4 className="font-serif text-xl sm:text-2xl font-bold text-[#132422] mt-1">
+                          Extra Amenities & Estate Inclusions
+                        </h4>
+                      </div>
+                      <span className="text-xs font-mono font-semibold text-[#8B7355] hidden sm:block">
+                        Complimentary for All In-House Guests
+                      </span>
+                    </div>
+
+                    {/* Amenities List Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 pt-1">
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
+                            <Activity className="w-4 h-4 text-[#137586]" />
+                            Grass Badminton Court
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#137586] border border-[#D0E7EB]">
+                            Gear Free
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                          Open-air lawn badminton court naturally sheltered by tall bamboo trees. Racquets and shuttles provided at reception.
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
+                            <Sun className="w-4 h-4 text-[#A3733E]" />
+                            Lawn Volleyball Grounds
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#A3733E] border border-[#DFD3C0]">
+                            Team Play
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                          Expansive manicured lawn area set up for spirited afternoon volleyball matches and team games.
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
+                            <Clock className="w-4 h-4 text-[#137586]" />
+                            Raised Garden Terraces
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#137586] border border-[#D0E7EB]">
+                            All Day
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                          Elevated wooden deck seating overlooking the plantation canopies for hot Coorg coffee, evening tea, and reading.
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
+                            <Sparkles className="w-4 h-4 text-[#A3733E]" />
+                            Evening Bonfire & Stargazing
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#A3733E] border border-[#DFD3C0]">
+                            On Request
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                          Gather around a crackling wood fire under clear night skies, accompanied by crisp Kodagu estate breezes.
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
+                            <CheckCircle2 className="w-4 h-4 text-[#137586]" />
+                            High-Speed Estate Wi-Fi
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#137586] border border-[#D0E7EB]">
+                            Connected
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                          Reliable wireless internet access across all guest suites, dining patio, and common garden decks for remote work.
+                        </p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-[#FAF6EF] border border-[#E8DFD1] hover:border-[#137586] transition-colors">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-xs font-bold text-[#132422] flex items-center gap-2">
+                            <ShieldCheck className="w-4 h-4 text-[#14422F]" />
+                            24/7 Power & Secure Parking
+                          </span>
+                          <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-[#14422F] border border-[#C5DACF]">
+                            Full Security
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#526462] leading-relaxed">
+                          Generator backup for round-the-clock uninterrupted power, continuous hot water, and gated parking with driver rest facilities.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-[#EFE8DC] flex flex-wrap items-center justify-between gap-2 text-xs text-[#6B5E50]">
+                    <div className="flex items-center gap-2 font-medium">
+                      <CheckCircle2 className="w-4 h-4 text-[#14422F]" />
+                      <span>All sports equipment & board games available on request at reception</span>
+                    </div>
+                  </div>
+                </div>
+              </CinematicReveal>
+            </div>
+
           </div>
 
         </div>

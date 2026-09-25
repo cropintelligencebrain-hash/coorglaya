@@ -255,30 +255,30 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
                 </div>
 
                 {/* 3 Metric Cards: Floor Area REMOVED completely */}
-                <div className="grid grid-cols-3 gap-2.5 pt-1">
-                  <div className="p-3 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0] text-center sm:text-left transition-shadow hover:shadow-xs">
+                <div className="grid grid-cols-3 gap-2 sm:gap-2.5 pt-1">
+                  <div className="p-2.5 sm:p-3 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0] text-center sm:text-left transition-shadow hover:shadow-xs flex flex-col justify-between">
                     <span className="text-[10px] font-bold text-[#8C5F2E] uppercase block tracking-wider">
                       Capacity
                     </span>
-                    <span className="text-sm font-bold text-[#131E1C] block mt-0.5 truncate">
+                    <span className="text-xs sm:text-sm font-bold text-[#131E1C] block mt-0.5 leading-snug">
                       {suite.capacity}
                     </span>
                   </div>
 
-                  <div className="p-3 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0] text-center sm:text-left transition-shadow hover:shadow-xs">
+                  <div className="p-2.5 sm:p-3 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0] text-center sm:text-left transition-shadow hover:shadow-xs flex flex-col justify-between">
                     <span className="text-[10px] font-bold text-[#8C5F2E] uppercase block tracking-wider">
                       Bedding
                     </span>
-                    <span className="text-sm font-bold text-[#131E1C] block mt-0.5 truncate">
+                    <span className="text-xs sm:text-sm font-bold text-[#131E1C] block mt-0.5 leading-snug">
                       {suite.bedType.split('+')[0]}
                     </span>
                   </div>
 
-                  <div className="p-3 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0] text-center sm:text-left transition-shadow hover:shadow-xs">
+                  <div className="p-2.5 sm:p-3 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0] text-center sm:text-left transition-shadow hover:shadow-xs flex flex-col justify-between">
                     <span className="text-[10px] font-bold text-[#8C5F2E] uppercase block tracking-wider">
                       Orientation
                     </span>
-                    <span className="text-sm font-bold text-[#131E1C] block mt-0.5 truncate">
+                    <span className="text-xs sm:text-sm font-bold text-[#131E1C] block mt-0.5 leading-snug">
                       {suite.view}
                     </span>
                   </div>

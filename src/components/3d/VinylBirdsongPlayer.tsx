@@ -106,7 +106,7 @@ export const VinylBirdsongPlayer: React.FC = () => {
           </div>
           <div>
             <span className="text-[10px] sm:text-[11px] font-bold text-[#A3733E] uppercase tracking-wider block">
-              33⅓ RPM Natural Soundscape · Live Turntable
+              Natural Dawn Soundscape · Live Turntable
             </span>
             <h3 className="font-serif text-lg sm:text-2xl font-bold text-[#132422]">
               Coorg Laya Living Birdsong
@@ -135,7 +135,7 @@ export const VinylBirdsongPlayer: React.FC = () => {
             ))}
           </div>
           <span className="text-[10px] sm:text-[11px] font-mono font-bold text-[#116B7B] ml-2 select-none">
-            {isPlaying ? 'ACTIVE 33⅓ RPM' : 'STANDBY'}
+            {isPlaying ? 'PLAYING DAWN CHORUS' : 'TAP TO LISTEN'}
           </span>
         </div>
       </div>
@@ -201,7 +201,7 @@ export const VinylBirdsongPlayer: React.FC = () => {
                   COORG LAYA
                 </span>
                 <span className="text-[6px] sm:text-[7px] font-mono font-bold text-[#132422]/80">
-                  SANCTUARY 33⅓
+                  SANCTUARY AUDIO
                 </span>
                 <div className="w-3 h-3 rounded-full bg-[#132422] mt-0.5 border border-white/50" />
               </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { LayaVideoHeroSection } from '../components/sections/LayaVideoHeroSection';
+import { BirdsongNatureSection } from '../components/sections/BirdsongNatureSection';
 import { ResortPillarsDirectory } from '../components/sections/ResortPillarsDirectory';
 import { RoomsSection } from '../components/sections/RoomsSection';
 import { AmenitiesSection } from '../components/sections/AmenitiesSection';
@@ -18,7 +19,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquiry }) => {
         <LayaVideoHeroSection onOpenEnquiry={onOpenEnquiry} />
       </div>
 
-      {/* 2. RESORT PILLARS DIRECTORY (The 4 Core Offerings: Suites, Pool & Amenities, Lawn, Gallery) */}
+      {/* 2. SENSORY MORNING EXPERIENCE (Live Vinyl Birdsong Player + Morning Coffee & Local Birds Guide) */}
+      <div id="morning-sensory-section" className="snap-section">
+        <BirdsongNatureSection />
+      </div>
+
+      {/* 3. RESORT PILLARS DIRECTORY (The 4 Core Offerings: Suites, Pool & Amenities, Lawn, Gallery) */}
       <div id="pillars-directory" className="snap-section">
         <ResortPillarsDirectory onOpenEnquiry={onOpenEnquiry} />
       </div>

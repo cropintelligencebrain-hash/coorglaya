@@ -140,10 +140,10 @@ export const ResortNavbar: React.FC<ResortNavbarProps> = ({ onOpenEnquiry }) => 
               <ArrowUpRight className="w-3.5 h-3.5 text-[#D4AF37]" />
             </button>
 
-            {/* 3 Horizontal Bars Menu Toggle Button */}
+            {/* 3 Horizontal Bars Menu Toggle Button (Mobile Only to prevent duplicate desktop loop) */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-[#FAF6EF] hover:bg-[#F0EAE1] text-[#132422] border border-[#E0D7C8] transition-all cursor-pointer shadow-sm group"
+              className="md:hidden flex items-center justify-center w-8 h-8 rounded-full bg-[#FAF6EF] hover:bg-[#F0EAE1] text-[#132422] border border-[#E0D7C8] transition-all cursor-pointer shadow-sm group"
               aria-label="Toggle Resort Directory Menu"
               aria-expanded={menuOpen}
             >

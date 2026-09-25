@@ -91,13 +91,9 @@ export const LayaVideoHeroSection: React.FC<LayaVideoHeroSectionProps> = ({
         />
       )}
 
-      {/* 2. CINEMATIC RADIAL VIGNETTE */}
+      {/* 2. DELICATE LUMINESCENT SCRIM (Keeps morning video bright, sunlit & vivid while maintaining logo readability) */}
       <div 
-        className="absolute inset-0 bg-black/40 backdrop-contrast-[1.05] pointer-events-none" 
-        aria-hidden="true" 
-      />
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.2)_0%,_rgba(0,0,0,0.65)_100%)] pointer-events-none" 
+        className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-black/45 pointer-events-none" 
         aria-hidden="true" 
       />
 

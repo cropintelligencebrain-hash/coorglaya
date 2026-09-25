@@ -118,7 +118,7 @@ export const ResortPillarsDirectory: React.FC<ResortPillarsDirectoryProps> = ({ 
                       <span className="text-[10px] sm:text-[11px] font-mono font-semibold text-[#D4AF37] block">
                         {pillar.highlight}
                       </span>
-                      <h3 className="font-serif text-base sm:text-lg font-bold leading-snug drop-shadow-sm text-white line-clamp-1">
+                      <h3 className="font-serif text-base sm:text-lg font-bold leading-snug drop-shadow-sm text-white">
                         {pillar.title}
                       </h3>
                     </div>
@@ -126,22 +126,22 @@ export const ResortPillarsDirectory: React.FC<ResortPillarsDirectoryProps> = ({ 
 
                   {/* Body & Actions (Uncluttered, Equalized Action Row) */}
                   <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <p className="text-xs sm:text-sm text-[#4A5D5A] leading-relaxed line-clamp-3">
+                    <p className="text-xs sm:text-sm text-[#4A5D5A] leading-relaxed">
                       {pillar.desc}
                     </p>
 
-                    <div className="pt-3 border-t border-[#EFE8DC] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
+                    <div className="pt-3 border-t border-[#EFE8DC] grid grid-cols-2 gap-2">
                       <Link
                         to={pillar.path}
-                        className="inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#FAF6EF] hover:bg-[#137586] text-[#137586] hover:text-white border border-[#E0D7C8] text-xs font-bold transition-all group-hover:border-[#137586] cursor-pointer"
+                        className="inline-flex items-center justify-center gap-1 py-2 px-2.5 rounded-xl bg-[#FAF6EF] hover:bg-[#137586] text-[#137586] hover:text-white border border-[#E0D7C8] text-[11px] sm:text-xs font-bold transition-all text-center whitespace-nowrap cursor-pointer shadow-2xs"
                       >
-                        <span className="truncate">{pillar.ctaText}</span>
+                        <span>Explore</span>
                         <ChevronRight className="w-3.5 h-3.5 shrink-0" />
                       </Link>
 
                       <button
                         onClick={onOpenEnquiry}
-                        className="px-3.5 py-2 rounded-xl bg-[#14422F] hover:bg-[#1A543C] text-[#FAF6EF] text-xs font-bold tracking-wider uppercase transition-all shadow-sm cursor-pointer shrink-0 text-center"
+                        className="py-2 px-2.5 rounded-xl bg-[#14422F] hover:bg-[#1A543C] text-[#FAF6EF] text-[11px] sm:text-xs font-bold tracking-wider uppercase transition-all shadow-sm cursor-pointer whitespace-nowrap text-center"
                       >
                         Reserve
                       </button>
