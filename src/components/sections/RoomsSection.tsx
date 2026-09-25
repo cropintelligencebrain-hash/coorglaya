@@ -324,7 +324,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPre
                           {suite.name}
                         </h3>
                         <p className="text-xs text-[#2D4744] font-semibold pt-0.5">
-                          {suite.sqft} · {suite.capacity} · {suite.bedType}
+                          {suite.capacity} · {suite.bedType} · {suite.view}
                         </p>
                       </div>
 
