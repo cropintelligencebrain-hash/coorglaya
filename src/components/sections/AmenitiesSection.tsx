@@ -19,13 +19,13 @@ export const AmenitiesSection: React.FC = () => {
               <span>Resort Amenities · Kushalnagar</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#131E1C] font-display leading-tight heading-balance">
-              Curated spaces for recreation, water, and stillness.
+              Spaces for swimming, outdoor games, and family time.
             </h2>
           </CinematicReveal>
 
           <CinematicReveal delay={0.15} direction="left">
             <p className="text-xs sm:text-sm text-[#314240] max-w-xs font-normal leading-relaxed prose-pretty">
-              An asynchronous editorial tour across our palm-fringed waters, soft lawn courts, and raised garden terraces.
+              Explore our palm-lined swimming pool, grass badminton court, kids trampoline, and garden terraces.
             </p>
           </CinematicReveal>
         </div>
@@ -60,7 +60,7 @@ export const AmenitiesSection: React.FC = () => {
                 </div>
 
                 <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#131E1C] leading-snug heading-balance">
-                  Unwind in crystal-clear waters under open Kodagu skies.
+                  Swim under open Kodagu skies in our palm-lined pool.
                 </h3>
 
                 <p className="text-xs sm:text-sm text-[#314240] font-normal leading-relaxed prose-pretty">

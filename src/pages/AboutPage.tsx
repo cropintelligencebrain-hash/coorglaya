@@ -41,7 +41,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenEnquiry }) => {
     {
       year: 'Heritage Grounds',
       title: 'Estate Plantation Roots',
-      desc: 'Originating as a fertile family coffee and spice estate nestled on the gentle slopes of Kushalnagar, Kodagu.',
+      desc: 'Started as a working family coffee and spice estate on the gentle slopes of Kushalnagar, Kodagu.',
     },
     {
       year: 'Architectural Vision',
@@ -49,9 +49,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenEnquiry }) => {
       desc: 'Architectural design centered around preserving towering coconut palms, green bamboo clusters, and open lawn vistas.',
     },
     {
-      year: 'Modern Sanctuary',
+      year: 'Modern Resort',
       title: 'Opening Coorg Laya',
-      desc: 'Welcoming discerning families, couples, and celebration groups to an authentic haven of mountain serenity.',
+      desc: 'Welcoming families, couples, and groups to peaceful mountain stays with open lawns and palm gardens.',
     },
   ];
 
@@ -62,7 +62,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenEnquiry }) => {
       <PageHeader
         badge="Our Heritage & Story"
         title="About Coorg Laya"
-        description="A nature-led sanctuary dedicated to restful mountain days, unhurried time with family, and morning birdsong in Kushalnagar, Kodagu."
+        description="A boutique resort dedicated to restful mountain days, time with family, and morning birdsong in Kushalnagar, Kodagu."
         actionText="Plan Your Visit"
         onActionClick={onOpenEnquiry}
         bgImage="/images/resort/outdoor-mural.jpeg"
@@ -85,7 +85,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenEnquiry }) => {
                 Born from a love for Kodagu's slow mountain rhythm.
               </h2>
               <p className="text-sm sm:text-base text-[#2C413E] font-normal leading-relaxed prose-pretty">
-                In Sanskrit, <span className="font-accent italic font-semibold text-[#137586] text-lg">"Laya"</span> (लय) signifies rhythm, harmony, and stillness. Coorg Laya Resort was founded with a singular purpose: to create a sanctuary where city fatigue dissolves into the peaceful melody of morning birdsong, rustling bamboo, and tropical water.
+                In Sanskrit, <span className="font-accent italic font-semibold text-[#137586] text-lg">"Laya"</span> (लय) signifies rhythm, harmony, and stillness. Coorg Laya Resort was founded with a singular purpose: to build a retreat where city fatigue gives way to morning birdsong, rustling bamboo, and clean plantation air.
               </p>
               <p className="text-sm sm:text-base text-[#2C413E] font-normal leading-relaxed prose-pretty">
                 Instead of over-building, we deliberately limited our accommodations to strictly <strong className="font-bold text-[#132422]">15 private guest suites (~45 overnight guests)</strong> across expansive open lawns. This ensures that every resident guest experiences genuine exclusivity, open space, and attentive care.
@@ -113,7 +113,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenEnquiry }) => {
         </div>
       </div>
 
-      {/* Sanctuary Values Grid */}
+      {/* Guiding Principles Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <CinematicReveal className="space-y-3 max-w-xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#D5C7B2] bg-[#FAF6EF] px-4 py-1.5 text-xs font-bold text-[#A3733E] shadow-sm">
@@ -121,7 +121,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenEnquiry }) => {
             <span className="tracking-wide uppercase">Guiding Principles</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#132422] font-display heading-balance leading-tight">
-            Our Sanctuary Commitments
+            Our Core Principles
           </h2>
         </CinematicReveal>
 

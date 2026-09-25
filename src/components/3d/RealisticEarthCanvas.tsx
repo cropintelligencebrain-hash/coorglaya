@@ -48,7 +48,7 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
     return new THREE.Vector3(x, y, z);
   };
 
-  // Generate sleek, handcrafted luxury pin texture (Champagne Gold / Radiant Pearl)
+  // Generate sleek, handcrafted luxury pin texture (Vibrant Ruby Red with Luminous Pearl Core)
   const createLuxuryPinTexture = () => {
     const canvas = document.createElement('canvas');
     canvas.width = 256;
@@ -61,7 +61,7 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
     // 1. Soft Ground Contact Shadow at Pin Tip (centered at x=128, y=244)
     ctx.save();
     const shadowGrad = ctx.createRadialGradient(128, 244, 2, 128, 244, 28);
-    shadowGrad.addColorStop(0.0, 'rgba(0, 0, 0, 0.70)');
+    shadowGrad.addColorStop(0.0, 'rgba(0, 0, 0, 0.75)');
     shadowGrad.addColorStop(0.4, 'rgba(0, 0, 0, 0.35)');
     shadowGrad.addColorStop(1.0, 'rgba(0, 0, 0, 0.0)');
     ctx.fillStyle = shadowGrad;
@@ -73,9 +73,9 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
     // 2. Slender Luxury Pin Silhouette
     // Tip at (128, 240), head centered at (128, 88) with radius 46
     ctx.save();
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
-    ctx.shadowBlur = 12;
-    ctx.shadowOffsetY = 6;
+    ctx.shadowColor = 'rgba(239, 68, 68, 0.60)';
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetY = 4;
 
     ctx.beginPath();
     ctx.moveTo(128, 240); // Needle tip anchored to coordinate
@@ -87,13 +87,13 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
     ctx.bezierCurveTo(174, 128, 160, 172, 128, 240);
     ctx.closePath();
 
-    // Rich Champagne Gold Metallic Gradient
-    const goldGrad = ctx.createLinearGradient(82, 42, 174, 240);
-    goldGrad.addColorStop(0.0, '#FFF5E4'); // Radiant specular peak
-    goldGrad.addColorStop(0.25, '#E8C896'); // Lustrous champagne gold
-    goldGrad.addColorStop(0.65, '#C7A583'); // Signature Laya resort gold
-    goldGrad.addColorStop(1.0, '#8B6F47'); // Burnished bronze needle tip
-    ctx.fillStyle = goldGrad;
+    // Rich Crimson / Ruby Red Metallic Gradient
+    const redGrad = ctx.createLinearGradient(82, 42, 174, 240);
+    redGrad.addColorStop(0.0, '#FF6B6B'); // Radiant specular peak
+    redGrad.addColorStop(0.25, '#EF4444'); // Lustrous vivid red
+    redGrad.addColorStop(0.65, '#DC2626'); // Rich crimson body
+    redGrad.addColorStop(1.0, '#991B1B'); // Deep ruby needle tip
+    ctx.fillStyle = redGrad;
     ctx.fill();
 
     // Ultra-crisp hairline specular edge
@@ -102,24 +102,24 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
     ctx.stroke();
     ctx.restore();
 
-    // 3. Luxurious Concentric Pearl Core
-    // Outer bronze bezel
+    // 3. Luxurious Concentric White Pearl Core
+    // Outer dark ruby bezel
     ctx.beginPath();
     ctx.arc(128, 88, 21, 0, Math.PI * 2);
-    ctx.fillStyle = '#654C2B';
+    ctx.fillStyle = '#7F1D1D';
     ctx.fill();
 
-    // Inner gold rim
+    // Inner bright ruby rim
     ctx.beginPath();
     ctx.arc(128, 88, 18, 0, Math.PI * 2);
-    ctx.fillStyle = '#E5C48E';
+    ctx.fillStyle = '#F87171';
     ctx.fill();
 
     // Radiant pearl center
     const pearlGrad = ctx.createRadialGradient(125, 84, 1, 128, 88, 14);
     pearlGrad.addColorStop(0.0, '#FFFFFF');
-    pearlGrad.addColorStop(0.7, '#F7EFE6');
-    pearlGrad.addColorStop(1.0, '#D6C0A6');
+    pearlGrad.addColorStop(0.7, '#FFF1F2');
+    pearlGrad.addColorStop(1.0, '#FECDD3');
     ctx.beginPath();
     ctx.arc(128, 88, 14, 0, Math.PI * 2);
     ctx.fillStyle = pearlGrad;
@@ -391,12 +391,15 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
         earthGroupRef.current.rotation.y = THREE.MathUtils.lerp(startRotY, targetRotY, smoothRotT);
         earthGroupRef.current.rotation.x = THREE.MathUtils.lerp(startRotX, targetRotX, smoothRotT);
 
+        const isMobileScreen = typeof window !== 'undefined' && window.innerWidth < 768;
+        const baseZ = isMobileScreen ? 9.6 : 7.2;
+
         if (p < 0.45) {
-          // In space orbit with mouse parallax tilt
+          // In space orbit with mouse parallax tilt (smaller, compact globe on mobile)
           cameraRef.current.position.set(
             mouseRef.current.x,
             mouseRef.current.y,
-            7.2
+            baseZ
           );
           earthGroupRef.current.scale.set(1, 1, 1);
         } else if (p < 0.8) {
@@ -404,7 +407,7 @@ export const RealisticEarthCanvas: React.FC<RealisticEarthCanvasProps> = ({
           const zoomT = Math.min(1, Math.max(0, (p - 0.45) / 0.35));
           const smoothZoom = 1 - Math.pow(2, -10 * zoomT);
 
-          const camZ = THREE.MathUtils.lerp(7.2, 2.06, smoothZoom);
+          const camZ = THREE.MathUtils.lerp(baseZ, 2.06, smoothZoom);
           const camX = THREE.MathUtils.lerp(mouseRef.current.x, 0, smoothZoom);
           const camY = THREE.MathUtils.lerp(mouseRef.current.y, 0, smoothZoom);
 

@@ -11,7 +11,7 @@ export const GalleryPage: React.FC<GalleryPageProps> = ({ onOpenEnquiry }) => {
     <div className="pt-24 sm:pt-28 pb-28 bg-[#FAF6EF] text-[#132422] space-y-16 select-none">
       <PageHeader
         badge="Photography & Views"
-        title="Sanctuary Gallery"
+        title="Resort Photo Gallery"
         description="Explore authentic photos of our 15 suites, palm-shaded swimming pool, green badminton lawns, and open celebration grounds."
         actionText="Plan Your Visit"
         onActionClick={onOpenEnquiry}

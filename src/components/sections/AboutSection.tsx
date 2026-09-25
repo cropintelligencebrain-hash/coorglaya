@@ -5,7 +5,7 @@ import { ClayImage } from '../common/ClayImage';
 import { fadeUp, staggerContainer } from '../../utils/motionVariants';
 
 export const AboutSection: React.FC = () => {
-  const sanctuaryPillars = [
+  const resortPillars = [
     {
       title: 'Morning Birdsong',
       description: 'Awaken each morning to natural birdsong and mountain breezes rustling through surrounding bamboo.',
@@ -22,7 +22,7 @@ export const AboutSection: React.FC = () => {
       icon: Users,
     },
     {
-      title: 'Quiet Sanctuary Hours',
+      title: 'Quiet Evening Hours',
       description: 'Zero loudspeaker policy after 10 PM to protect the natural nocturnal habitat and guarantee restful sleep.',
       icon: VolumeX,
     },
@@ -66,7 +66,7 @@ export const AboutSection: React.FC = () => {
             </h2>
 
             <p className="text-sm sm:text-base text-[#2C413E] font-normal leading-relaxed prose-pretty">
-              Derived from the Sanskrit <span className="font-accent italic font-semibold text-[#137586] text-lg">Laya</span> (लय), meaning rhythm, harmony, and graceful dissolution of stress — at Coorg Laya Resort, we believe true relaxation begins with simplicity, spacious surroundings, and unhurried time together in clean mountain air. Every terrace, lawn, and pool deck has been shaped to preserve the native tree canopy and provide an acoustic sanctuary for birds and guests alike.
+              The name <span className="font-accent italic font-semibold text-[#137586] text-lg">Laya</span> (लय) originates in Sanskrit, meaning rhythm and harmony. At Coorg Laya Resort, relaxation begins with quiet grounds, clear mountain air, and unhurried time together. Our terraces, lawns, and pool decks preserve the native silver oak and bamboo canopy, creating a peaceful habitat for birds and guests alike.
             </p>
 
             <div className="grid grid-cols-2 gap-4 pt-2">
@@ -78,19 +78,19 @@ export const AboutSection: React.FC = () => {
 
               <div className="p-4 rounded-2xl bg-[#FAF6EF] border border-[#E4D9C8] shadow-sm">
                 <ShieldCheck className="size-5 text-[#137586] mb-1" />
-                <h4 className="font-display text-base font-bold text-[#132422]">Quiet Sanctuary</h4>
+                <h4 className="font-display text-base font-bold text-[#132422]">Quiet Atmosphere</h4>
                 <p className="text-xs text-[#2C413E] font-normal">Zero highway disturbance</p>
               </div>
             </div>
           </motion.div>
         </motion.div>
 
-        {/* Authentic Sanctuary Pillars Grid */}
+        {/* Authentic Resort Pillars Grid */}
         <div className="space-y-6 pt-4 border-t border-[#E4D9C8]">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
             <div>
               <span className="text-[11px] font-bold text-[#A3733E] uppercase tracking-wider block">
-                Sanctuary Principles
+                Founding Principles
               </span>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#132422]">
                 What Defines Coorg Laya
@@ -102,7 +102,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {sanctuaryPillars.map((pillar, idx) => {
+            {resortPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
                 <div

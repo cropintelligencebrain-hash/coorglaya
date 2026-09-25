@@ -28,7 +28,7 @@ export const NotFoundPage: React.FC = () => {
             className="px-7 py-3 rounded-full text-xs font-bold tracking-wide uppercase text-white bg-[#137586] hover:bg-[#0F5E6C] shadow-md transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-2 cursor-pointer"
           >
             <ArrowLeft className="size-4" />
-            <span>Return to Sanctuary</span>
+            <span>Return to Home</span>
           </Link>
         </div>
       </div>

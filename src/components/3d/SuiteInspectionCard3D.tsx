@@ -7,12 +7,14 @@ export interface SuiteSpecData {
   id: string;
   name: string;
   category: string;
-  sqft: string;
+  code?: string;
+  sqft?: string;
+  startingRate?: string;
   capacity: string;
   bedType: string;
   view: string;
+  bathType?: string;
   highlights: string[];
-  startingRate: string;
   image: string;
   description: string;
 }
@@ -121,13 +123,13 @@ export const SuiteInspectionCard3D: React.FC<SuiteInspectionCard3DProps> = ({
                 <span className="tracking-wide uppercase text-[11px]">Specs</span>
               </button>
 
-              {/* Floating Bottom Capacity & Dimension Badge */}
+              {/* Floating Bottom Capacity & Layout Badge */}
               <div className="absolute bottom-3 left-3 z-10 flex items-center gap-2 text-white text-xs font-semibold bg-[#132422]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 shadow-sm">
                 <Users className="w-3.5 h-3.5 text-[#A3733E]" />
                 <span>{suite.capacity}</span>
                 <span className="text-white/40">•</span>
-                <Maximize2 className="w-3.5 h-3.5 text-[#137586]" />
-                <span>{suite.sqft}</span>
+                <Bed className="w-3.5 h-3.5 text-[#137586]" />
+                <span>{suite.bedType}</span>
               </div>
             </div>
           </div>
@@ -155,14 +157,13 @@ export const SuiteInspectionCard3D: React.FC<SuiteInspectionCard3DProps> = ({
               </div>
             </div>
 
-            {/* Price & Action Row (Clean F-Pattern Conclusion) */}
+            {/* Inquiry Status & Action Row */}
             <div className="pt-3 border-t border-[#E8DFD1] flex items-center justify-between mt-2">
               <div>
-                <span className="text-[10px] uppercase font-bold text-[#A3733E] block tracking-wider">From</span>
-                <span className="text-xl font-bold text-[#137586] font-display">
-                  {suite.startingRate}
+                <span className="text-[10px] uppercase font-bold text-[#A3733E] block tracking-wider">Booking</span>
+                <span className="text-sm font-bold text-[#137586]">
+                  Direct Reservation
                 </span>
-                <span className="text-[11px] text-[#2C413E] font-medium"> / night</span>
               </div>
 
               <div className="flex items-center gap-2">
@@ -178,7 +179,7 @@ export const SuiteInspectionCard3D: React.FC<SuiteInspectionCard3DProps> = ({
                   onClick={() => onBookNow(suite.name)}
                   className="px-5 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase text-white bg-[#137586] hover:bg-[#0F5E6C] shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span>Reserve</span>
+                  <span>Enquire</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </motion.button>
               </div>
@@ -216,13 +217,6 @@ export const SuiteInspectionCard3D: React.FC<SuiteInspectionCard3DProps> = ({
             {/* Spec Matrix Grid */}
             <div className="grid grid-cols-2 gap-2.5 mt-4">
               <div className="bg-[#1D3531] p-2.5 rounded-xl border border-white/5 hover:border-[#137586]/40 transition-colors">
-                <span className="text-[10px] text-[#A3733E] font-bold uppercase tracking-wider">Suite Area</span>
-                <div className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
-                  <Maximize2 className="w-3.5 h-3.5 text-[#137586]" />
-                  {suite.sqft}
-                </div>
-              </div>
-              <div className="bg-[#1D3531] p-2.5 rounded-xl border border-white/5 hover:border-[#137586]/40 transition-colors">
                 <span className="text-[10px] text-[#A3733E] font-bold uppercase tracking-wider">Bed Layout</span>
                 <div className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
                   <Bed className="w-3.5 h-3.5 text-[#137586]" />
@@ -241,6 +235,13 @@ export const SuiteInspectionCard3D: React.FC<SuiteInspectionCard3DProps> = ({
                 <div className="text-sm font-bold text-white flex items-center gap-1.5 mt-0.5">
                   <Users className="w-3.5 h-3.5 text-[#137586]" />
                   {suite.capacity}
+                </div>
+              </div>
+              <div className="bg-[#1D3531] p-2.5 rounded-xl border border-white/5 hover:border-[#137586]/40 transition-colors">
+                <span className="text-[10px] text-[#A3733E] font-bold uppercase tracking-wider">En-Suite Bath</span>
+                <div className="text-xs font-bold text-white flex items-center gap-1.5 mt-0.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#137586]" />
+                  {suite.bathType || 'Hot Rainshower & Vanity'}
                 </div>
               </div>
             </div>
@@ -264,8 +265,8 @@ export const SuiteInspectionCard3D: React.FC<SuiteInspectionCard3DProps> = ({
           {/* Footer Action on Back */}
           <div className="pt-4 border-t border-white/10 flex items-center justify-between">
             <div>
-              <span className="text-[10px] uppercase font-bold text-[#A3733E] tracking-wider">Rate Starting At</span>
-              <div className="text-xl font-bold text-white font-display">{suite.startingRate}</div>
+              <span className="text-[10px] uppercase font-bold text-[#A3733E] tracking-wider">Reservation</span>
+              <div className="text-sm font-bold text-white">Direct Reservation</div>
             </div>
             <motion.button
               whileHover={{ scale: 1.04 }}

@@ -68,7 +68,7 @@ export default {
         sans: ['"Plus Jakarta Sans"', '"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['"Playfair Display"', 'Georgia', 'serif'],
         accent: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        mono: ['"JetBrains Mono"', '"Space Mono"', 'ui-monospace', 'monospace'],
       },
       letterSpacing: {
         tight: '-0.02em',

@@ -16,11 +16,11 @@ export const RoomsPage: React.FC<RoomsPageProps> = ({ onOpenEnquiry }) => {
 
   const comparisonRows = [
     {
-      feature: 'Suite Living Area',
-      olive: '380 sq.ft',
-      emerald: '420 sq.ft',
-      family: '480 sq.ft',
-      verandah: '450 sq.ft',
+      feature: 'Resort Wing Location',
+      olive: 'Garden Wing',
+      emerald: 'Plantation Wing',
+      family: 'Family Poolside Wing',
+      verandah: 'Executive Palm Wing',
     },
     {
       feature: 'Bed Configuration',
@@ -58,11 +58,11 @@ export const RoomsPage: React.FC<RoomsPageProps> = ({ onOpenEnquiry }) => {
       verandah: 'Yes (Included)',
     },
     {
-      feature: 'Starting Tariff / Night',
-      olive: '₹4,500 + tax',
-      emerald: '₹5,200 + tax',
-      family: '₹6,000 + tax',
-      verandah: '₹5,600 + tax',
+      feature: 'Reservation Status',
+      olive: 'Available on Direct Booking',
+      emerald: 'Available on Direct Booking',
+      family: 'Available on Direct Booking',
+      verandah: 'Available on Direct Booking',
     },
   ];
 
@@ -207,7 +207,7 @@ export const RoomsPage: React.FC<RoomsPageProps> = ({ onOpenEnquiry }) => {
             Side-by-Side Suite Comparison
           </h2>
           <p className="text-sm text-[#2C413E] font-normal leading-relaxed prose-pretty">
-            Compare dimensions, occupancy limits, bed configurations, and verified amenities across all four suite categories.
+            Compare layouts, occupancy limits, bed configurations, and verified amenities across all four suite categories.
           </p>
         </CinematicReveal>
 

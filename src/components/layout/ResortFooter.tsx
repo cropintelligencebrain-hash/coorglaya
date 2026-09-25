@@ -55,7 +55,7 @@ export const ResortFooter: React.FC = () => {
           <div className="space-y-3">
             <h4 className="font-display text-base font-bold text-[#132422]">Coorg Laya Resort</h4>
             <p className="leading-relaxed text-[#2C413E] font-normal prose-pretty">
-              15 private living suites and a 500-guest scenic celebration lawn nestled among misty hills and fresh waterways in Kushalnagar, Kodagu.
+              15 private living suites and a 500-guest scenic celebration lawn located along the coffee hills and waterways of Kushalnagar, Kodagu.
             </p>
             <div className="pt-2 text-xs font-mono font-bold text-[#137586]">
               Direct Desk: +91 7411695533
@@ -107,7 +107,7 @@ export const ResortFooter: React.FC = () => {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-display text-base font-bold text-[#132422]">Sanctuary Address</h4>
+            <h4 className="font-display text-base font-bold text-[#132422]">Resort Address</h4>
             <p className="leading-relaxed text-[#2C413E] font-normal prose-pretty">
               Teppadakandi, Siddapura Main Road, Basavanahalli Village, Gudde Hosur Post, Kushalnagar - 571234, Kodagu, Karnataka.
             </p>

@@ -4,6 +4,7 @@ import { ResortNavbar } from './components/layout/ResortNavbar';
 import { ResortFooter } from './components/layout/ResortFooter';
 import { ScrollToTop } from './components/common/ScrollToTop';
 import { EnquiryModal } from './components/common/EnquiryModal';
+import { MobileFloatingBookingBar } from './components/common/MobileFloatingBookingBar';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -63,6 +64,8 @@ export const App: React.FC = () => {
         </main>
 
         <EnquiryModal isOpen={isEnquiryOpen} onClose={handleCloseEnquiry} />
+
+        <MobileFloatingBookingBar onOpenEnquiry={handleOpenEnquiry} />
 
         <ResortFooter />
       </div>

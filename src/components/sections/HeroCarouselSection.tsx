@@ -19,15 +19,15 @@ export const HeroCarouselSection: React.FC<HeroCarouselSectionProps> = ({ onOpen
       image: '/images/resort/resort-exteriors.jpeg',
       badge: 'Resort Architecture · Kushalnagar',
       title: 'Unhurried Days Under the Coorg Sun',
-      subtitle: 'A boutique 15-suite natural sanctuary set amidst misty plantation breezes, towering palms, and lush manicured lawns in Kodagu.',
+      subtitle: '15 private suites set amidst plantation breezes, tall palms, and open manicured lawns in Kushalnagar, Kodagu.',
       quickTag: '15 Private Suites · ~45 Guests',
     },
     {
       id: 2,
       image: '/images/amenities/swimming-pool.jpeg',
       badge: 'Palm Pool Deck',
-      title: 'Cool Off in Tropical Sanctuary Waters',
-      subtitle: 'Circular relaxation shallow pool framed by tall coconut palms, timber loungers, and clean mountain air.',
+      title: 'Swim Beneath the Palms',
+      subtitle: 'Circular relaxation pool framed by tall coconut palms, timber loungers, and clean mountain air.',
       quickTag: 'Palm Swimming Pool',
     },
     {
@@ -231,7 +231,7 @@ export const HeroCarouselSection: React.FC<HeroCarouselSectionProps> = ({ onOpen
             Discover the Coorg Laya Experience
           </h2>
           <p className="text-sm sm:text-base text-[#314240] leading-relaxed mt-2.5 prose-pretty font-normal">
-            An intimate botanical haven where luxury architecture meets unfiltered Western Ghats nature.
+            15 private suites, palm-shaded swimming pool, and expansive green lawns in Kushalnagar.
           </p>
         </div>
 

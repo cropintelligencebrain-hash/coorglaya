@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Users, ArrowUpRight, Heart, Crown, Sparkles } from 'lucide-react';
 import { ClayImage } from '../common/ClayImage';
@@ -57,17 +58,21 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onOpenEnquiry }) =
                 </div>
               </div>
 
-              <div className="pt-2">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={springTransition}
-                  onClick={onOpenEnquiry}
-                  className="px-6 py-3.5 rounded-full bg-[#137586] hover:bg-[#105B69] text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-colors shadow-md flex items-center gap-2 cursor-pointer"
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <Link
+                  to="/events"
+                  className="px-6 py-3.5 rounded-full bg-[#137586] hover:bg-[#105B69] text-white font-bold text-xs sm:text-sm tracking-wider uppercase transition-all shadow-md flex items-center gap-2 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
                 >
-                  <span>Request Event & Wedding Dates</span>
-                  <ArrowUpRight className="size-4" />
-                </motion.button>
+                  <span>Discover More About Celebration Grounds →</span>
+                </Link>
+
+                <button
+                  onClick={onOpenEnquiry}
+                  className="px-5 py-3.5 rounded-full bg-[#FAF6EF] hover:bg-[#EAE1D2] text-[#137586] border border-[#137586]/30 font-bold text-xs sm:text-sm tracking-wider uppercase transition-all flex items-center gap-1.5 cursor-pointer active:scale-98"
+                >
+                  <Sparkles className="size-4 text-[#A3733E]" />
+                  <span>Request Event Dates</span>
+                </button>
               </div>
             </div>
 

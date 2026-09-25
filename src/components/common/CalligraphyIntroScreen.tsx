@@ -94,7 +94,7 @@ export const CalligraphyIntroScreen: React.FC<CalligraphyIntroScreenProps> = ({
                     onClick={handleExit}
                     className="group px-5 py-2.5 rounded-full bg-gradient-to-r from-[#1A96AA] to-[#116B7B] text-[#FAF6EF] text-xs font-bold shadow-[0_12px_28px_rgba(0,0,0,0.5)] hover:brightness-110 transition-all flex items-center gap-2 cursor-pointer border border-white/20"
                   >
-                    <span>Enter Sanctuary</span>
+                    <span>Enter Resort</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
                 )}
@@ -116,7 +116,7 @@ export const CalligraphyIntroScreen: React.FC<CalligraphyIntroScreenProps> = ({
             >
               <div className="h-px w-8 sm:w-16 bg-gradient-to-r from-transparent to-[#E2BA84]" />
               <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.55em] text-[#E2BA84]">
-                NATURAL LUXURY SANCTUARY
+                HIGHLAND NATURE RESORT
               </span>
               <div className="h-px w-8 sm:w-16 bg-gradient-to-l from-transparent to-[#E2BA84]" />
             </motion.div>

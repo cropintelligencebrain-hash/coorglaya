@@ -53,8 +53,6 @@ export interface AccommodationOverview {
     imageAlt: string;
     highlights: string[];
     tag: string;
-    startingRate?: string;
-    taxNote?: string;
   }>;
 }
 
@@ -226,8 +224,6 @@ export const resortData: ResortData = {
         imageAlt: "Room with white bedding, olive accents, a wardrobe and a dressing mirror at Coorg Laya Resort",
         highlights: ["Wardrobe & Storage", "Dressing Vanity Mirror", "En-suite Bathroom", "Garden Vista"],
         tag: "Verified Room Interior",
-        startingRate: "₹4,500",
-        taxNote: "+ tax / night",
       },
       {
         id: "suite-emerald",
@@ -239,8 +235,6 @@ export const resortData: ResortData = {
         imageAlt: "Room with a green patterned feature wall, wooden ceiling and comfortable bed at Coorg Laya Resort",
         highlights: ["Botanical Feature Wall", "Timber Ceiling Accents", "En-suite Bathroom", "Balcony Vista"],
         tag: "Verified Room Interior",
-        startingRate: "₹5,200",
-        taxNote: "+ tax / night",
       },
       {
         id: "suite-twin",
@@ -252,8 +246,6 @@ export const resortData: ResortData = {
         imageAlt: "Twin bed bedroom interior at Coorg Laya Resort",
         highlights: ["Multiple Beds", "Spacious Floor Plan", "En-suite Bathroom", "Garden Access"],
         tag: "Family Suite",
-        startingRate: "₹6,000",
-        taxNote: "+ tax / night",
       },
       {
         id: "suite-lounge",
@@ -265,8 +257,6 @@ export const resortData: ResortData = {
         imageAlt: "Verandah Lounge Suite with interior seating area and sunny windows",
         highlights: ["Interior Sitting Area", "Private Wardrobe", "En-suite Bathroom", "Morning Sunlight"],
         tag: "Verandah Suite",
-        startingRate: "₹5,600",
-        taxNote: "+ tax / night",
       }
     ]
   },
@@ -678,7 +668,7 @@ export const resortData: ResortData = {
     birdsongQuote: "Wake Up to Birdsong.",
     paragraphs: [
       "Coorg Laya Resort is built around the idea of genuine relaxation. Tucked into the lush greenery of Kushalnagar, Kodagu, the property invites guests to step away from busy schedules and return to a simpler, more restorative pace.",
-      "Mornings begin with crisp air and the natural chorus of birdsong. Days are spent at leisure — swimming in the pool, enjoying friendly matches of badminton or volleyball, watching children jump happily on the trampoline, or simply sitting with a warm cup of coffee on the garden terrace.",
+      "Mornings begin with crisp air and the natural chorus of birdsong. Guests spend their days swimming in the pool, playing badminton or volleyball, enjoying the kids trampoline, or sitting with fresh coffee on the garden terrace.",
       "With 15 private guest rooms accommodating up to 45 overnight guests and expansive lawn space for celebrations of up to 500 guests, Coorg Laya offers the ideal balance of intimate privacy and open-air hospitality.",
     ],
     corePillars: [

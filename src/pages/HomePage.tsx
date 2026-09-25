@@ -1,15 +1,9 @@
 import React from 'react';
-import { EarthHeroScrollSection } from '../components/sections/EarthHeroScrollSection';
-import { WelcomeSection } from '../components/sections/WelcomeSection';
-import { FloatingParallaxMosaic } from '../components/3d/FloatingParallaxMosaic';
-import { BirdsongNatureSection } from '../components/sections/BirdsongNatureSection';
+import { LayaVideoHeroSection } from '../components/sections/LayaVideoHeroSection';
+import { ResortPillarsDirectory } from '../components/sections/ResortPillarsDirectory';
 import { RoomsSection } from '../components/sections/RoomsSection';
 import { AmenitiesSection } from '../components/sections/AmenitiesSection';
-import { ActivitiesSection } from '../components/sections/ActivitiesSection';
 import { EventsSection } from '../components/sections/EventsSection';
-import { GallerySection } from '../components/sections/GallerySection';
-import { NearbySection } from '../components/sections/NearbySection';
-import { AboutSection } from '../components/sections/AboutSection';
 import { ContactEnquirySection } from '../components/sections/ContactEnquirySection';
 
 interface HomePageProps {
@@ -19,62 +13,32 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquiry }) => {
   return (
     <div className="relative w-full bg-[#FAF6EF] text-[#132422] overflow-x-hidden select-none">
-      {/* 1. CINEMATIC 3D EARTH TO COORG SCROLL-ZOOM HERO (Photorealistic Globe, Subcontinent Alignment & Block LAYA Reveal) */}
+      {/* 1. CINEMATIC COORG VIDEO HERO (Woman sipping coffee by window, misty hills, seamless 12.55s 2.7K loop) */}
       <div id="hero-section" className="snap-section">
-        <EarthHeroScrollSection onOpenEnquiry={onOpenEnquiry} />
+        <LayaVideoHeroSection onOpenEnquiry={onOpenEnquiry} />
       </div>
 
-      {/* 2. WELCOME / INTRO (Real Covered Lounge photo, 3D Clay Stat Cards) */}
-      <div id="welcome-section" className="snap-section">
-        <WelcomeSection />
+      {/* 2. RESORT PILLARS DIRECTORY (The 4 Core Offerings: Suites, Pool & Amenities, Lawn, Gallery) */}
+      <div id="pillars-directory" className="snap-section">
+        <ResortPillarsDirectory onOpenEnquiry={onOpenEnquiry} />
       </div>
 
-      {/* 3. FULL-VIEWPORT KINETIC FLOATING PARALLAX MOSAIC CANVAS */}
-      <div id="mosaic-section" className="snap-section">
-        <FloatingParallaxMosaic />
-      </div>
-
-      {/* 4. BIRDSONG & NATURE (3D Aesthetic Vinyl Record Player & Web Audio Synthesis) */}
-      <div id="birdsong" className="snap-section">
-        <BirdsongNatureSection />
-      </div>
-
-      {/* 5. ROOMS (15 Suites, 3D 180° Flip Inspection Cards) */}
+      {/* 3. SUITES PREVIEW (Image-Dominant 4-Suite Grid, Direct Booking & Redirect to Full 3D Specs) */}
       <div id="rooms-section" className="snap-section">
-        <RoomsSection onOpenEnquiry={onOpenEnquiry} />
+        <RoomsSection isPreview={true} onOpenEnquiry={onOpenEnquiry} />
       </div>
 
-      {/* 6. AMENITIES (Real Swimming Pool Live Fluid Caustics, Trampoline, Badminton) */}
+      {/* 4. POOL & RESORT SPACES PREVIEW (Image-First Amenities & Redirect to Fluid Caustics) */}
       <div id="amenities-section" className="snap-section">
         <AmenitiesSection />
       </div>
 
-      {/* 7. ACTIVITIES (Drag-based Clay Horizontal Carousel) */}
-      <div id="activities-section" className="snap-section">
-        <ActivitiesSection />
-      </div>
-
-      {/* 8. EVENTS & FUNCTIONS (500-Guest Lawn Mandap Photo & Parallax) */}
+      {/* 5. CELEBRATION GROUNDS (500-Guest Lawn Photo & Event Planning) */}
       <div id="events-section" className="snap-section">
         <EventsSection onOpenEnquiry={onOpenEnquiry} />
       </div>
 
-      {/* 9. GALLERY (3D Curved Cylinder Showcase & Category Filter Grid) */}
-      <div id="gallery-section" className="snap-section">
-        <GallerySection />
-      </div>
-
-      {/* 10. NEARBY (Real Tourism Radar Map, Live Kaveri Wave Caustics & Fan-Out Deck) */}
-      <div id="nearby-section" className="snap-section">
-        <NearbySection />
-      </div>
-
-      {/* 11. ABOUT (Real Outdoor Mural Photo & Ecology Philosophy) */}
-      <div id="about-section" className="snap-section">
-        <AboutSection />
-      </div>
-
-      {/* 12. CONTACT / ENQUIRY (Clay Input Form & Mailto Dispatcher) */}
+      {/* 6. INSTANT CONTACT & RESERVATION (Direct Booking Form & Location) */}
       <div id="contact-section" className="snap-section">
         <ContactEnquirySection />
       </div>

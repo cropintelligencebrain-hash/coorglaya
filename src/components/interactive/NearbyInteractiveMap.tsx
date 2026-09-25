@@ -136,7 +136,7 @@ export const NearbyInteractiveMap: React.FC = () => {
                     <span className="font-semibold text-[#132422] text-xs">{activeDest.bestTime}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-[#635546] block">Entry Fee</span>
+                    <span className="text-[10px] uppercase font-bold text-[#635546] block">Access Info</span>
                     <span className="font-semibold text-[#132422] text-xs">{activeDest.entryFee}</span>
                   </div>
                 </div>

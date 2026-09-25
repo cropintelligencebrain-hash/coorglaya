@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BedDouble, ArrowUpRight, Sparkles, Layers, LayoutGrid } from 'lucide-react';
+import { BedDouble, ArrowUpRight, Sparkles, Eye, LayoutGrid, ChevronRight } from 'lucide-react';
 import { SuiteInspectionCard3D, SuiteSpecData } from '../3d/SuiteInspectionCard3D';
-import { CardStackScroll } from '../3d/CardStackScroll';
+import { SuiteFocusGallery } from '../interactive/SuiteFocusGallery';
 import { CinematicReveal } from '../common/CinematicReveal';
 
 interface RoomsSectionProps {
   onOpenEnquiry: () => void;
+  isPreview?: boolean;
 }
 
-export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => {
-  const [viewMode, setViewMode] = useState<'stack' | 'grid'>('stack');
+export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry, isPreview = false }) => {
+  const [viewMode, setViewMode] = useState<'focus' | 'grid'>('focus');
   const [isMobile, setIsMobile] = useState(false);
   const [activeSuiteIdx, setActiveSuiteIdx] = useState<number>(0);
   const mobileTrackRef = React.useRef<HTMLDivElement>(null);
@@ -51,7 +53,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
         'Private en-suite hot rainshower',
         'Complimentary estate breakfast',
       ],
-      startingRate: '₹4,500',
+      startingRate: 'Tariff on Enquiry',
       description: 'Comfortable minimalist quarters with garden-facing windows, vanity dressing mirror, and private en-suite bathroom.',
     },
     {
@@ -69,7 +71,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
         'Organic forest bath amenities',
         'Highland cross-breeze ventilation',
       ],
-      startingRate: '₹5,200',
+      startingRate: 'Tariff on Enquiry',
       description: 'Nature-inspired botanical feature wall, warm timber roof detailing, and relaxed highland comfort for deep rest.',
     },
     {
@@ -87,7 +89,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
         'Spacious wardrobe & luggage bay',
         'Ideal for groups & family reunions',
       ],
-      startingRate: '₹6,000',
+      startingRate: 'Tariff on Enquiry',
       description: 'Spacious interconnecting beds and floor plan tailored for family holidays, group retreats, and celebrations.',
     },
     {
@@ -105,7 +107,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
         'Teak wood workstations & seating',
         'Soundproof acoustic mountain comfort',
       ],
-      startingRate: '₹5,600',
+      startingRate: 'Tariff on Enquiry',
       description: 'Adjoining sitting nook with comfortable couches and direct step-out access to shaded palm walkways.',
     },
   ];
@@ -134,20 +136,20 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
             {!isMobile && (
               <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-[#FAF6EF] border border-[#E4D9C8] shadow-sm relative">
                 <button
-                  onClick={() => setViewMode('stack')}
+                  onClick={() => setViewMode('focus')}
                   className={`relative flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-colors cursor-pointer z-10 ${
-                    viewMode === 'stack' ? 'text-white' : 'text-[#314240] hover:text-[#137586]'
+                    viewMode === 'focus' ? 'text-white' : 'text-[#314240] hover:text-[#137586]'
                   }`}
                 >
-                  {viewMode === 'stack' && (
+                  {viewMode === 'focus' && (
                     <motion.div
                       layoutId="activeRoomView"
                       className="absolute inset-0 rounded-full bg-[#137586] -z-10 shadow-sm"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  <Layers className="w-3.5 h-3.5" />
-                  <span className="tracking-wide">Card Stack</span>
+                  <Eye className="w-3.5 h-3.5" />
+                  <span className="tracking-wide">Focus Gallery</span>
                 </button>
                 <button
                   onClick={() => setViewMode('grid')}
@@ -180,8 +182,85 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
           </CinematicReveal>
         </div>
 
-        {/* MOBILE VIEW: Mobile Suite Snap Slider with Tabs */}
-        {isMobile ? (
+        {/* PREVIEW MODE: Fast Image-Dominant Grid with Direct Redirect Button */}
+        {isPreview ? (
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+              {suites.map((suite, idx) => (
+                <CinematicReveal key={suite.id} delay={idx * 0.07} duration={0.5}>
+                  <div className="group rounded-3xl overflow-hidden bg-white border border-[#E4D9C8] hover:border-[#137586] transition-all duration-300 shadow-sm hover:shadow-xl flex flex-col justify-between h-full">
+                    <div>
+                      {/* Image Dominance (70%) */}
+                      <div className="relative aspect-[4/3] bg-[#E8DFD1] overflow-hidden">
+                        <img
+                          src={suite.image}
+                          alt={suite.name}
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                        <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm text-[10px] font-bold text-white uppercase tracking-wider border border-white/20">
+                          {suite.category}
+                        </div>
+                        <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-[#137586] text-white text-xs font-bold shadow-md">
+                          {suite.startingRate}
+                        </div>
+                      </div>
+
+                      {/* Content: Required Info Only */}
+                      <div className="p-4 space-y-2">
+                        <h3 className="font-serif text-base sm:text-lg font-bold text-[#131E1C]">
+                          {suite.name}
+                        </h3>
+                        <p className="text-xs text-[#586E6B] font-medium">
+                          {suite.bedType} · {suite.view}
+                        </p>
+                        <p className="text-xs text-[#314240] line-clamp-2 leading-relaxed pt-1">
+                          {suite.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Direct Reserve Action */}
+                    <div className="p-4 pt-0">
+                      <button
+                        onClick={onOpenEnquiry}
+                        className="w-full py-2.5 rounded-full bg-[#137586] hover:bg-[#0E5461] text-white text-xs font-bold tracking-wider uppercase transition-all shadow-sm flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+                      >
+                        <span>Reserve Suite</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                </CinematicReveal>
+              ))}
+            </div>
+
+            {/* Subpage Redirect Banner: Where Deep 3D & Specs Live */}
+            <CinematicReveal delay={0.2} duration={0.6}>
+              <div className="rounded-2xl sm:rounded-3xl bg-[#FAF6EF] border border-[#E0D7C8] p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm text-center sm:text-left">
+                <div className="space-y-1 max-w-xl">
+                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#A3733E]">
+                    Explore Living Quarters in Depth
+                  </span>
+                  <h4 className="font-serif text-base sm:text-lg font-bold text-[#131E1C]">
+                    Compare all 15 suites with interactive 3D inspection cards & floor specs
+                  </h4>
+                </div>
+
+                <Link
+                  to="/rooms"
+                  className="px-6 py-3 rounded-full bg-[#14422F] hover:bg-[#1A543C] text-[#FAF6EF] font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] active:scale-[0.98] shrink-0 cursor-pointer"
+                >
+                  <span>Discover More About Suites & 3D Tour</span>
+                  <ChevronRight className="w-4 h-4 text-[#D4AF37]" />
+                </Link>
+              </div>
+            </CinematicReveal>
+          </div>
+        ) : isMobile ? (
+          /* FULL PAGE MOBILE VIEW: Mobile Suite Snap Slider with Tabs */
           <div className="space-y-4">
             {/* Quick Suite Selector Tabs */}
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
@@ -218,7 +297,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
               {suites.map((suite) => (
                 <div
                   key={suite.id}
-                  className="snap-touch-item w-[84vw] max-w-[340px] rounded-3xl overflow-hidden bg-[#FAF6EF] border border-[#E4D9C8] shadow-md flex flex-col justify-between"
+                  className="snap-touch-item w-[min(85vw,340px)] landscape:w-[min(46vw,380px)] rounded-3xl overflow-hidden bg-[#FAF6EF] border border-[#E4D9C8] shadow-md flex flex-col justify-between"
                 >
                   <div>
                     {/* Image with Price Badge */}
@@ -234,7 +313,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
                         {suite.category}
                       </div>
                       <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-[#137586] text-white text-xs font-bold shadow-md">
-                        {suite.startingRate} <span className="text-[10px] font-normal opacity-90">/ night</span>
+                        {suite.startingRate}
                       </div>
                     </div>
 
@@ -292,11 +371,11 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onOpenEnquiry }) => 
               ))}
             </div>
           </div>
-        ) : viewMode === 'stack' ? (
-          /* DESKTOP VIEW: Card Stack Scroll (skiper16/skiper17) */
-          <CardStackScroll suites={suites} onBookNow={() => onOpenEnquiry()} />
+        ) : viewMode === 'focus' ? (
+          /* FULL PAGE VIEW: Framer Focus Gallery (In-Place Scroll & Click Focus) */
+          <SuiteFocusGallery suites={suites} onBookNow={() => onOpenEnquiry()} />
         ) : (
-          /* DESKTOP VIEW: 4-Column Flip Inspection Cards Grid */
+          /* FULL PAGE DESKTOP VIEW: 4-Column Flip Inspection Cards Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {suites.map((suite, idx) => (
               <CinematicReveal key={suite.id} delay={idx * 0.08} duration={0.6}>

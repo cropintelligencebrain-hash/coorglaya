@@ -170,3 +170,47 @@ export const reducedMotionVariants: Variants = {
   visible: { opacity: 1, transition: { duration: 0.01 } },
 };
 
+// StyleSeed Motion Seeds (ui-motion)
+export const silk = {
+  entrance: {
+    initial: { opacity: 0, y: 16 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+  },
+  exit: {
+    exit: { opacity: 0, y: -12 },
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+  },
+  hover: {
+    whileHover: { y: -3 },
+    transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+export const snap = {
+  entrance: {
+    initial: { opacity: 0, scale: 0.96 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.2, ease: [0.2, 0, 0, 1] },
+  },
+  hover: {
+    whileHover: { y: -2 },
+    transition: { duration: 0.15, ease: [0.2, 0, 0, 1] },
+  },
+  press: {
+    whileTap: { scale: 0.96 },
+    transition: { duration: 0.1, ease: [0.2, 0, 0, 1] },
+  },
+};
+
+export const spring = {
+  press: {
+    whileTap: { scale: 0.95 },
+    transition: { type: 'spring', stiffness: 350, damping: 20 },
+  },
+  hover: {
+    whileHover: { scale: 1.02 },
+    transition: { type: 'spring', stiffness: 300, damping: 18 },
+  },
+};
+

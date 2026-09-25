@@ -72,8 +72,8 @@ export const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({ onOpenEnqu
       timeSlot: '07:30 PM – 10:00 PM',
       energy: 'Starlit Stillness',
       energyLevel: 25,
-      description: 'Savor freshly brewed hot Coorg estate coffee on the covered verandah and gaze at the unpolluted night skies before sanctuary quiet hours.',
-      highlights: ['Fresh estate coffee', 'Unpolluted night sky', 'Quiet sanctuary hours'],
+      description: 'Enjoy freshly brewed Coorg coffee on the covered verandah beneath clear night skies before 10:00 PM quiet hours.',
+      highlights: ['Fresh estate coffee', 'Clear night sky', 'Quiet evening hours'],
       variant: 'sand' as const,
     },
   ];
@@ -87,7 +87,7 @@ export const ActivitiesSection: React.FC<ActivitiesSectionProps> = ({ onOpenEnqu
           <CinematicReveal className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#D5C7B2] bg-[#FAF6EF] px-4 py-1.5 text-xs font-semibold tracking-kicker uppercase text-[#A3733E] shadow-sm">
               <Compass className="w-4 h-4 text-[#A3733E]" />
-              <span>Sanctuary Experiences</span>
+              <span>Resort Experiences</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#131E1C] font-display leading-tight heading-balance">
               Curated Kodagu activities for everyone.

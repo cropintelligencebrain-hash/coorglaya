@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Compass, Volume2, Sparkles, ArrowUpRight, Camera, ChevronDown } from 'lucide-react';
+import { Sparkles, ArrowUpRight, ChevronDown, LayoutGrid } from 'lucide-react';
 import { RealisticEarthCanvas } from '../3d/RealisticEarthCanvas';
-import { SatelliteOrbitHUD } from '../3d/SatelliteOrbitHUD';
 import { LayaHeroLogo } from '../common/LayaHeroLogo';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -55,10 +54,10 @@ export const EarthHeroScrollSection: React.FC<EarthHeroScrollSectionProps> = ({
     const trigger = ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top top',
-      end: isMobile ? '+=1600' : '+=3000',
+      end: isMobile ? '+=450' : '+=1600',
       pin: pinRef.current,
       pinSpacing: true,
-      scrub: isMobile ? 0.8 : 1.2,
+      scrub: isMobile ? 0.5 : 1.0,
       anticipatePin: 1,
       onUpdate: (self) => {
         setScrollProgress(self.progress);
@@ -79,17 +78,17 @@ export const EarthHeroScrollSection: React.FC<EarthHeroScrollSectionProps> = ({
   }, [resortBackdrops.length]);
 
   const handleScrollToExplore = () => {
-    const welcomeEl = document.getElementById('welcome-section');
-    if (welcomeEl) {
-      welcomeEl.scrollIntoView({ behavior: 'smooth' });
+    const targetEl = document.getElementById('pillars-directory') || document.getElementById('welcome-section');
+    if (targetEl) {
+      targetEl.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleTriggerZoom = () => {
     if (!containerRef.current) return;
     const isMobile = window.innerWidth < 768;
-    const scrollDistance = isMobile ? 1600 : 3000;
-    const targetY = containerRef.current.offsetTop + scrollDistance * 0.85;
+    const scrollDistance = isMobile ? 450 : 1600;
+    const targetY = containerRef.current.offsetTop + scrollDistance * 0.95;
 
     window.scrollTo({
       top: targetY,
@@ -122,30 +121,24 @@ export const EarthHeroScrollSection: React.FC<EarthHeroScrollSectionProps> = ({
         {/* 3D Realistic Earth Canvas with Pure Cinematic Scroll Scrub */}
         <RealisticEarthCanvas progress={scrollProgress} />
 
-        {/* SATELLITE ORBIT HUD: Live corner coordinates, descending altitude & prominent scroll button */}
-        <SatelliteOrbitHUD
-          progress={scrollProgress}
-          onTriggerZoom={handleTriggerZoom}
-        />
-
-        {/* PHASE 0: Space Orbit View - Elevated Visibility with Prominent Golden Laya */}
+        {/* PHASE 0: Clean Intro with Main Text and Compact Globe (Zero HUD Clutter) */}
         <div
-          className="absolute left-5 sm:left-12 md:left-16 lg:left-24 top-16 sm:top-[34%] sm:-translate-y-1/2 max-w-sm sm:max-w-md lg:max-w-xl z-20 pointer-events-none transition-all duration-200 space-y-4 text-white"
+          className="absolute left-5 sm:left-12 md:left-16 lg:left-24 top-16 sm:top-[34%] sm:-translate-y-1/2 max-w-sm sm:max-w-md lg:max-w-xl z-20 pointer-events-none transition-all duration-200 space-y-3 sm:space-y-4 text-white"
           style={{
             opacity: spaceIntroOpacity,
             transform: `translateY(calc(0% + ${spaceIntroY}px))`,
             display: spaceIntroOpacity > 0.01 ? 'block' : 'none',
           }}
         >
-          {/* Subtle Hairline Geographic Origin */}
-          <div className="flex items-center gap-2.5 text-[11px] sm:text-xs font-mono tracking-[0.25em] uppercase text-[#FFD23F]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FFD23F]" />
-            <span>Western Ghats · Uncharted Stillness</span>
+          {/* Subtle Location Origin */}
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-mono tracking-[0.22em] uppercase text-[#EF4444]">
+            <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-ping" />
+            <span className="font-semibold text-[#FAF6EF]">Coorg, Karnataka · Western Ghats</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-white leading-[1.12] heading-balance">
             Hidden in the misty canopy,{' '}
-            <span className="block mt-2 font-accent italic font-bold">
+            <span className="block mt-1 sm:mt-2 font-accent italic font-bold">
               <span className="text-[#FFD23F] text-5xl sm:text-7xl md:text-8xl drop-shadow-[0_4px_24px_rgba(255,210,63,0.35)]">
                 Laya
               </span>{' '}
@@ -155,13 +148,18 @@ export const EarthHeroScrollSection: React.FC<EarthHeroScrollSectionProps> = ({
             </span>
           </h1>
 
-          <p className="text-xs sm:text-base text-white/80 leading-relaxed font-normal prose-pretty pt-1">
-            Along a secluded curve of River Kaveri lies an untamed rhythm of flowing waters and morning birdsong. Far from the world’s noise, waiting to be discovered.
+          <p className="text-xs sm:text-base text-white/80 leading-relaxed font-normal prose-pretty pt-0.5 sm:pt-1">
+            Along a secluded curve of River Kaveri. 15 private guest suites, palm swimming pool, and pristine 500-guest celebration lawns.
           </p>
 
-          <div className="flex items-center gap-2.5 text-xs font-mono tracking-widest uppercase text-[#FAF6EF]/60 pt-1">
-            <span className="w-6 h-px bg-[#FFD23F]/60" />
-            <span>Descend to explore</span>
+          <div className="pt-2 pointer-events-auto flex items-center gap-3">
+            <button
+              onClick={handleTriggerZoom}
+              className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-[#FAF6EF] text-xs font-bold tracking-wider uppercase transition-all flex items-center gap-2 cursor-pointer shadow-lg active:scale-95"
+            >
+              <span>Descend to Resort</span>
+              <ChevronDown className="w-3.5 h-3.5 text-[#FFD23F] animate-bounce" />
+            </button>
           </div>
         </div>
 
@@ -228,13 +226,13 @@ export const EarthHeroScrollSection: React.FC<EarthHeroScrollSectionProps> = ({
                   <ArrowUpRight className="w-4 h-4 text-[#D4AF37] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
 
-                {/* Secondary CTA: Identical Luxury Styling */}
+                {/* Secondary CTA: Explore Pillars Directory */}
                 <a
-                  href="#birdsong"
+                  href="#pillars-directory"
                   className="group relative px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-gradient-to-b from-[#14422F] to-[#0A261B] hover:from-[#1A543C] hover:to-[#0F3526] text-[#FAF6EF] font-bold text-xs sm:text-sm tracking-[0.15em] uppercase transition-all duration-300 flex items-center gap-3 border border-[#D4AF37]/65 shadow-[0_12px_32px_rgba(0,0,0,0.65),_inset_0_1px_1px_rgba(255,255,255,0.25)] hover:shadow-[0_14px_38px_rgba(212,175,55,0.35)] hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
                 >
-                  <Volume2 className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform" />
-                  <span>Kaveri & Birdsong Audio</span>
+                  <LayoutGrid className="w-4 h-4 text-[#D4AF37] group-hover:scale-110 transition-transform" />
+                  <span>Explore Resort Pillars</span>
                 </a>
               </div>
             </div>

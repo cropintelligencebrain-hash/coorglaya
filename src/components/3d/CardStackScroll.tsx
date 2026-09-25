@@ -69,7 +69,7 @@ const StackCard: React.FC<StackCardProps> = ({
             </div>
 
             <div className="absolute bottom-3 right-3 glass-spec-chip text-white font-bold text-xs">
-              <span className="text-[#A3733E]">From</span> {suite.startingRate} / Night
+              <span>Available on Direct Booking</span>
             </div>
           </div>
 
@@ -78,7 +78,7 @@ const StackCard: React.FC<StackCardProps> = ({
             <div>
               <div className="flex items-center gap-2 text-xs font-bold text-[#A3733E] uppercase tracking-wider mb-1">
                 <BedDouble className="w-3.5 h-3.5" />
-                <span>Sanctuary Suite Quarters</span>
+                <span>Private Suite Quarters</span>
               </div>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#131E1C]">
                 {suite.name}
@@ -91,8 +91,8 @@ const StackCard: React.FC<StackCardProps> = ({
             {/* Quick Spec Pills */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
               <div className="p-2.5 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0]">
-                <span className="text-[10px] font-semibold text-[#8C5F2E] uppercase block tracking-kicker">Area</span>
-                <span className="text-xs font-bold text-[#131E1C] font-mono">{suite.sqft}</span>
+                <span className="text-[10px] font-semibold text-[#8C5F2E] uppercase block tracking-kicker">Orientation</span>
+                <span className="text-xs font-bold text-[#131E1C] truncate block">{suite.view}</span>
               </div>
               <div className="p-2.5 rounded-2xl bg-[#EFE8DC] border border-[#DFD3C0]">
                 <span className="text-[10px] font-semibold text-[#8C5F2E] uppercase block tracking-kicker">Capacity</span>

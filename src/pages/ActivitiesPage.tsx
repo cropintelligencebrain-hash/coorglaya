@@ -107,7 +107,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({ onOpenEnquiry })
       {/* Page Header */}
       <PageHeader
         badge="Experiences & Recreation"
-        title="Sanctuary Activities"
+        title="Resort Activities & Recreation"
         description="From refreshing afternoon swims and enclosed trampoline jumping to active games of lawn badminton and starlit coffee conversations."
         actionText="Plan Your Experience"
         onActionClick={onOpenEnquiry}
@@ -128,7 +128,7 @@ export const ActivitiesPage: React.FC<ActivitiesPageProps> = ({ onOpenEnquiry })
             How Will You Spend Your Days?
           </h2>
           <p className="text-sm text-[#2C413E] font-normal leading-relaxed prose-pretty">
-            Choose a curated pace that fits your stay or weave together your own custom sanctuary rhythm.
+            Choose a pace that suits your stay or explore the grounds at your own rhythm.
           </p>
         </CinematicReveal>
 
