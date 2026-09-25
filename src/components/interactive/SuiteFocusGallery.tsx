@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   BedDouble,
@@ -9,6 +9,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Compass,
+  Play,
+  Pause,
 } from 'lucide-react';
 import { SuiteSpecData } from '../3d/SuiteInspectionCard3D';
 
@@ -17,20 +19,22 @@ interface SuiteFocusGalleryProps {
   onBookNow: (suiteId: string) => void;
 }
 
+const DURATION_MS = 5500; // 5.5s luxury viewing interval per suite
+const TICK_MS = 50;
+
 export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
   suites,
   onBookNow,
 }) => {
   const [activeIdx, setActiveIdx] = useState(0);
-  const [isPinned, setIsPinned] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const lastScrollTimeRef = useRef<number>(0);
-  const activeIdxRef = useRef(activeIdx);
-  activeIdxRef.current = activeIdx;
 
   // 3D Perspective Mouse Interaction state
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -45,91 +49,54 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
     setMousePos({ x: 0, y: 0 });
   };
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
+    setProgress(0);
     setActiveIdx((prev) => (prev + 1) % suites.length);
-  };
+  }, [suites.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
+    setProgress(0);
     setActiveIdx((prev) => (prev - 1 + suites.length) % suites.length);
-  };
+  }, [suites.length]);
 
   const handleSelectSuite = (index: number) => {
+    setProgress(0);
     setActiveIdx(index);
   };
 
-  // 
-  // VIEWPORT PIN & SCROLL FOCUS INTERCEPT:
-  // Once the visitor scrolls down and this section reaches the focal area below the navbar:
-  // - The view pins / locks focus on the suite showcase.
-  // - Scrolling down cycles through all suites (01 -> 02 -> 03 -> 04) without moving the page down.
-  // - Once Suite 04 is reached, scrolling down unpins and naturally proceeds to the below content.
-  // - Scrolling up on Suite 01 unpins and naturally proceeds back up to top content.
-  // - ZERO 200vh/320vh height containers, completely eliminating trailing blank space!
-  //
+  // IntersectionObserver: auto-advances only when visible in viewport
   useEffect(() => {
-    const onWindowWheel = (e: WheelEvent) => {
-      const card = cardRef.current;
-      if (!card) return;
+    const card = cardRef.current;
+    if (!card) return;
 
-      const rect = card.getBoundingClientRect();
-      const idealTop = 95; // comfortable clearance below floating navbar
-      const inFocalZone = rect.top <= 145 && rect.top >= 40 && rect.bottom >= window.innerHeight * 0.65;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
 
-      if (!inFocalZone) {
-        setIsPinned(false);
-        return;
-      }
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
 
-      setIsPinned(true);
+  // Living Storyboard Auto-Advance Timer (pauses on hover or manual toggle)
+  useEffect(() => {
+    if (!isPlaying || !isInView || isHovered) return;
 
-      const now = performance.now();
-      const currentIdx = activeIdxRef.current;
-
-      // Scrolling Down
-      if (e.deltaY > 15) {
-        if (currentIdx < suites.length - 1) {
-          e.preventDefault();
-          // Lock scroll position at the ideal focal alignment
-          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-          const targetY = currentScrollY + rect.top - idealTop;
-          if (Math.abs(rect.top - idealTop) > 6) {
-            window.scrollTo({ top: targetY, behavior: 'auto' });
-          }
-
-          if (now - lastScrollTimeRef.current >= 420) {
-            lastScrollTimeRef.current = now;
-            setActiveIdx((prev) => Math.min(suites.length - 1, prev + 1));
-          }
-        } else {
-          // At the last suite (04): allow natural scroll down to below sections
-          setIsPinned(false);
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + (TICK_MS / DURATION_MS) * 100;
+        if (next >= 100) {
+          setActiveIdx((curr) => (curr + 1) % suites.length);
+          return 0;
         }
-      }
-      // Scrolling Up
-      else if (e.deltaY < -15) {
-        if (currentIdx > 0) {
-          e.preventDefault();
-          // Lock scroll position at the ideal focal alignment
-          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-          const targetY = currentScrollY + rect.top - idealTop;
-          if (Math.abs(rect.top - idealTop) > 6) {
-            window.scrollTo({ top: targetY, behavior: 'auto' });
-          }
+        return next;
+      });
+    }, TICK_MS);
 
-          if (now - lastScrollTimeRef.current >= 420) {
-            lastScrollTimeRef.current = now;
-            setActiveIdx((prev) => Math.max(0, prev - 1));
-          }
-        } else {
-          // At the first suite (01): allow natural scroll up to top sections
-          setIsPinned(false);
-        }
-      }
-    };
-
-    window.addEventListener('wheel', onWindowWheel, { passive: false });
-    return () => window.removeEventListener('wheel', onWindowWheel);
-  }, [suites.length]);
+    return () => clearInterval(timer);
+  }, [isPlaying, isInView, isHovered, suites.length]);
 
   // Touch swipe support for mobile
   const touchStartXRef = useRef<number | null>(null);
@@ -162,7 +129,7 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [suites.length]);
+  }, [handleNext, handlePrev]);
 
   const activeSuite = suites[activeIdx] || suites[0];
 
@@ -172,14 +139,62 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
       className="w-full select-none space-y-4"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {/* 
-        MAIN CLEAN SPLIT CARD (ZERO OVERLAPPING BOXES):
-        Fits naturally in document flow. ZERO tall blank containers!
+        STORYBOARD SEGMENTED PROGRESS TIMELINE (4 LUXURY SEGMENTS)
+        Visually displays auto-advancing progress across all 4 suites.
+        1-tap jump to any suite with instant progress sync.
       */}
-      <div className={`rounded-3xl sm:rounded-4xl bg-[#FAF6EF] border-2 transition-all duration-300 p-5 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden ${
-        isPinned ? 'border-[#137586]/60 shadow-[0_25px_60px_rgba(19,117,134,0.12)]' : 'border-[#E4D9C8]'
-      }`}>
+      <div className="grid grid-cols-4 gap-2 sm:gap-3.5 px-1">
+        {suites.map((suite, idx) => {
+          const isCurrent = activeIdx === idx;
+          const isPassed = idx < activeIdx;
+          const fillWidth = isPassed ? 100 : isCurrent ? progress : 0;
+
+          return (
+            <button
+              key={suite.id}
+              onClick={() => handleSelectSuite(idx)}
+              className="group text-left space-y-1.5 cursor-pointer py-1"
+              aria-label={`Jump to suite 0${idx + 1} ${suite.name}`}
+            >
+              {/* Segmented Fill Bar */}
+              <div className="h-1.5 rounded-full bg-[#E5DDD0] overflow-hidden relative border border-[#DFD3C0]/60">
+                <div
+                  className={`h-full rounded-full transition-all duration-75 ${
+                    isCurrent
+                      ? 'bg-gradient-to-r from-[#137586] to-[#1EA3BA]'
+                      : isPassed
+                      ? 'bg-[#137586]/70'
+                      : 'bg-transparent'
+                  }`}
+                  style={{ width: `${fillWidth}%` }}
+                />
+              </div>
+
+              {/* Segment Caption */}
+              <div className="flex items-center justify-between text-[11px] text-[#586E6B] group-hover:text-[#132422] transition-colors">
+                <span className={`font-mono font-bold text-[10px] ${isCurrent ? 'text-[#137586]' : ''}`}>
+                  0{idx + 1}
+                </span>
+                <span className={`hidden sm:inline text-xs font-semibold truncate max-w-[140px] ${
+                  isCurrent ? 'text-[#132422]' : ''
+                }`}>
+                  {suite.name.replace(' Suite', '')}
+                </span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* 
+        MAIN CLEAN SPLIT CARD (ZERO OVERLAPPING BOXES & ZERO SCROLL HIJACKING):
+        100% natural, buttery page scroll with 0 blank space traps.
+      */}
+      <div className="rounded-3xl sm:rounded-4xl bg-[#FAF6EF] border-2 border-[#E4D9C8] transition-all duration-300 p-5 sm:p-7 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.08)] overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-center">
           
           {/* 
@@ -190,8 +205,6 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
           <div className="lg:col-span-7">
             <motion.div
               onMouseMove={handleMouseMove}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
               style={{ perspective: 1100 }}
               className="relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/11] rounded-2xl sm:rounded-3xl overflow-hidden bg-[#E8DFD1] shadow-lg group cursor-pointer"
             >
@@ -401,10 +414,10 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
       </div>
 
       {/* 
-        CENTERED ARROWS & SUITE TABS (BELOW IN THE MIDDLE)
+        CENTERED ARROWS, SUITE TABS & LIVING LOOKBOOK CONTROLS
         Features Framer Motion layoutId magnetic gliding spring indicator!
       */}
-      <div className="flex flex-col items-center justify-center gap-2 pt-1 pb-2">
+      <div className="flex flex-col items-center justify-center gap-2.5 pt-1 pb-2">
         <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#FAF6EF] border border-[#E4D9C8] shadow-sm">
           {/* Prev Button */}
           <button
@@ -423,7 +436,7 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
                 <button
                   key={suite.id}
                   onClick={() => handleSelectSuite(idx)}
-                  className={`relative px-3 py-1.5 rounded-full text-xs font-bold transition-colors duration-200 cursor-pointer flex items-center gap-1.5 z-10 ${
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-bold transition-colors duration-200 cursor-pointer flex items-center gap-1.5 z-10 ${
                     isSelected
                       ? 'text-white'
                       : 'text-[#586E6B] hover:text-[#132422]'
@@ -453,22 +466,38 @@ export const SuiteFocusGallery: React.FC<SuiteFocusGalleryProps> = ({
           </button>
         </div>
 
-        {/* Dynamic Focus Guidance Indicator with Smooth Text Fade */}
-        <div className="flex items-center gap-2 text-[11px] text-[#6E4924] font-mono">
-          <Compass className="w-3.5 h-3.5 text-[#137586] animate-pulse" />
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={activeIdx}
-              initial={{ opacity: 0, y: 3 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -3 }}
-              transition={{ duration: 0.2 }}
-            >
-              {activeIdx < suites.length - 1
-                ? `Scroll down to reveal suite 0${activeIdx + 2} of 0${suites.length}`
-                : 'Suite 04 of 04 · Scroll down to continue to resort buyout & comparison'}
-            </motion.span>
-          </AnimatePresence>
+        {/* Ambient Tour Status & Play/Pause Control */}
+        <div className="flex items-center gap-3 text-[11px] text-[#586E6B]">
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF6EF] border border-[#E4D9C8] hover:border-[#137586] text-[#2C413E] transition-all cursor-pointer shadow-xs active:scale-95"
+            title={isPlaying ? 'Pause Auto-Advancing Lookbook' : 'Resume Auto-Advancing Lookbook'}
+          >
+            {isPlaying && !isHovered ? (
+              <>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-medium">Living Lookbook · Auto-Advancing</span>
+                <Pause className="w-3 h-3 text-[#586E6B] ml-0.5" />
+              </>
+            ) : isHovered ? (
+              <>
+                <span className="w-2 h-2 rounded-full bg-amber-500" />
+                <span className="font-medium text-amber-800">Paused for Room Inspection</span>
+              </>
+            ) : (
+              <>
+                <span className="w-2 h-2 rounded-full bg-stone-400" />
+                <span className="font-medium">Auto-Advance Paused</span>
+                <Play className="w-3 h-3 text-[#137586] ml-0.5" />
+              </>
+            )}
+          </button>
+
+          <span className="hidden sm:inline text-[#8C7A65]">·</span>
+
+          <span className="hidden sm:inline font-mono text-[11px] text-[#8C7A65]">
+            Suite 0{activeIdx + 1} of 0{suites.length}
+          </span>
         </div>
       </div>
     </div>
