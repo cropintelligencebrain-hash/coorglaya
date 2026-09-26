@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Disc, Music, Music2, Music3, Pause, Play, Sparkles, Volume2, VolumeX } from 'lucide-react';
-import { KingfisherDancer } from './KingfisherDancer';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Disc, Pause, Play, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { KingfisherPortrait } from './KingfisherPortrait';
 
 export const VinylBirdsongPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -76,8 +76,6 @@ export const VinylBirdsongPlayer = () => {
       </div>
 
       <div className="relative flex flex-col items-center justify-around gap-4 overflow-visible py-2 sm:flex-row sm:gap-6">
-        {isPlaying && !reducedMotion && <div className="pointer-events-none absolute inset-0 hidden items-center justify-center sm:flex" aria-hidden="true"><motion.div className="absolute h-56 w-56 rounded-full border border-[#137586]/35" animate={{ scale: [1, 1.42], opacity: [0.38, 0] }} transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut' }} /><motion.div className="absolute h-56 w-56 rounded-full border border-[#1A96AA]/30" animate={{ scale: [1, 1.62], opacity: [0.24, 0] }} transition={{ duration: 2.2, delay: 0.7, repeat: Infinity, ease: 'easeOut' }} /></div>}
-
         <div className="relative flex h-56 w-56 shrink-0 items-center justify-center rounded-3xl border-2 border-[#DFD3C0] bg-[#EFE8DC] p-2.5 shadow-[inset_0_2px_8px_rgba(0,0,0,0.06),_0_12px_28px_rgba(19,117,134,0.12)] sm:h-60 sm:w-60">
           <button type="button" onClick={togglePlay} className="relative flex h-48 w-48 items-center justify-center overflow-hidden rounded-full shadow-[0_8px_24px_rgba(9,46,54,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#137586] sm:h-52 sm:w-52" aria-label={isPlaying ? 'Pause birdsong' : 'Play birdsong'}>
             <motion.span className="absolute inset-0" animate={{ rotate: isPlaying && !reducedMotion ? 360 : 0 }} transition={{ duration: 2.8, repeat: isPlaying && !reducedMotion ? Infinity : 0, ease: 'linear' }} style={{ background: 'radial-gradient(circle, #0D2630 0%, #081B22 30%, #030E12 55%, #081B22 80%, #0D2630 100%)' }} />
@@ -88,10 +86,8 @@ export const VinylBirdsongPlayer = () => {
           <button type="button" onClick={togglePlay} className="absolute z-30 flex h-12 w-12 items-center justify-center rounded-full bg-[#137586] text-white shadow-[0_6px_18px_rgba(19,117,134,0.45)] transition hover:scale-105 hover:bg-[#105B69] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#137586]" aria-label={isPlaying ? 'Pause birdsong' : 'Play birdsong'}>{isPlaying ? <Pause className="h-5 w-5" aria-hidden="true" /> : <Play className="ml-0.5 h-5 w-5" aria-hidden="true" />}</button>
         </div>
 
-        <div className="relative hidden h-44 w-12 items-center justify-center sm:flex" aria-hidden="true"><AnimatePresence>{isPlaying && !reducedMotion && <>{[Music, Music2, Music3].map((Note, index) => <motion.div key={index} className={`absolute ${index === 2 ? 'text-[#A3733E]' : 'text-[#137586]'}`} initial={{ opacity: 0, x: -12, y: 18 }} animate={{ opacity: [0, 1, 1, 0], x: [-10, 10 + index * 5, 24 + index * 4], y: [10, -22, -48 - index * 9] }} exit={{ opacity: 0 }} transition={{ duration: 2.1 + index * 0.2, delay: index * 0.55, repeat: Infinity }}><Note className={index === 0 ? 'h-5 w-5' : 'h-4 w-4'} /></motion.div>)}</>}</AnimatePresence></div>
-
-        <button type="button" onClick={togglePlay} aria-label={isPlaying ? 'Pause birdsong and stop the White-throated Kingfisher dance' : 'Play birdsong and start the White-throated Kingfisher dance'} className="group flex min-h-44 flex-col items-center justify-center rounded-3xl border-2 border-[#DFD3C0] bg-[#FAF6EF] p-4 shadow-sm transition hover:border-[#137586] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#137586] sm:p-5">
-          <span className="mb-2 flex items-center gap-1.5 rounded-full border border-[#BCE2E7] bg-[#E5F3F5] px-3 py-1 text-[10px] font-bold text-[#137586]"><Sparkles className="h-3.5 w-3.5 text-[#A3733E]" aria-hidden="true" />{isPlaying ? 'Dancing to the Dawn Chorus' : 'Click bird to play'}</span><KingfisherDancer isPlaying={isPlaying} /><span className="mt-1 flex items-center gap-1.5"><span className="font-serif text-xs font-bold text-[#132422]">White-throated Kingfisher</span><span className="rounded-full border border-[#BCE2E7] bg-[#E5F3F5] px-2.5 py-0.5 text-[10px] font-bold text-[#137586]">Kodagu resident</span></span>
+        <button type="button" onClick={togglePlay} aria-label={isPlaying ? 'Pause birdsong' : 'Play birdsong'} className="group flex min-h-44 flex-col items-center justify-center rounded-3xl border-2 border-[#DFD3C0] bg-[#FAF6EF] p-4 shadow-sm transition hover:border-[#137586] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#137586] sm:p-5">
+          <span className="mb-2 flex items-center gap-1.5 rounded-full border border-[#BCE2E7] bg-[#E5F3F5] px-3 py-1 text-[10px] font-bold text-[#137586]"><Sparkles className="h-3.5 w-3.5 text-[#A3733E]" aria-hidden="true" />{isPlaying ? 'Dawn chorus playing' : 'Click bird to play'}</span><KingfisherPortrait /><span className="mt-1 flex items-center gap-1.5"><span className="font-serif text-xs font-bold text-[#132422]">White-throated Kingfisher</span><span className="rounded-full border border-[#BCE2E7] bg-[#E5F3F5] px-2.5 py-0.5 text-[10px] font-bold text-[#137586]">Kodagu resident</span></span>
         </button>
       </div>
 
