@@ -143,7 +143,7 @@ export const VinylBirdsongPlayer: React.FC = () => {
         </div>
       </div>
 
-      {/* Centered Stage: Vinyl Turntable (Left) + Floating Notes + Pixel Bird (Right, Facing Left) */}
+      {/* Centered Stage: Vinyl Turntable (Left) + Floating Notes + Hi-Res Pixel Bird (Right, Facing Left) */}
       <div className="relative flex flex-col sm:flex-row items-center justify-around gap-4 sm:gap-6 py-2 overflow-visible">
         
         {/* Radiating Soundwave Ripples when Playing in Blue/Teal */}
@@ -301,178 +301,241 @@ export const VinylBirdsongPlayer: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* 3. ORIGINAL RETRO PIXEL BIRD (Facing LEFT towards the Vinyl Player) */}
+        {/* 3. UPGRADED HIGH-RES ARTICULATED PIXEL BIRD (Facing LEFT towards the Vinyl Player) */}
         <div 
           onClick={togglePlay}
           className="relative flex flex-col items-center justify-center p-3.5 sm:p-4 rounded-3xl bg-[#FAF6EF] border-2 border-[#DFD3C0] hover:border-[#137586] transition-all cursor-pointer group select-none shadow-sm hover:shadow-lg"
-          title="Click to play music and watch the pixel bird dance!"
+          title="Click to play music and watch each part of the bird dance!"
         >
-          {/* Pixel-art style badge */}
+          {/* Status Badge */}
           <div className="mb-2 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E5F3F5] border border-[#BCE2E7] text-[10px] font-mono font-bold text-[#137586] shadow-2xs">
             <Sparkles className="w-3 h-3 text-[#A3733E]" />
-            <span>{isPlaying ? '♪ Dancing to Beat' : 'Click Pixel Bird to Play'}</span>
+            <span>{isPlaying ? '♪ Dancing with Beat' : 'Click Bird to Play'}</span>
           </div>
 
-          {/* Stepped Pixel Dance Arena */}
-          <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
+          {/* Stepped Pixel Dance Stage (Feet Anchored — Independent Part Motions) */}
+          <div className="relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center overflow-visible">
             
             {/* Pulsing Aura Ring when Dancing */}
             {isPlaying && (
               <motion.div
                 animate={{ scale: [1, 1.25, 1], opacity: [0.4, 0.15, 0.4] }}
                 transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute inset-1 rounded-full bg-[#1A96AA]/25 blur-md pointer-events-none"
+                className="absolute inset-2 rounded-full bg-[#1A96AA]/20 blur-md pointer-events-none"
               />
             )}
 
-            {/* ARTICULATED PIXEL BIRD SVG (Crisp 32x32 Pixel Matrix facing LEFT) */}
-            <motion.div
-              // Stepped rhythm bounce & side-to-side weight shift
-              animate={isPlaying ? {
-                y: [0, -6, 0, -4, 0],
-                x: [-3, 0, 3, 0, -3],
-              } : {
-                y: [0, -2, 0],
-                x: 0,
-              }}
-              transition={isPlaying ? {
-                duration: 0.6,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              } : {
-                duration: 2.8,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-              className="relative w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center drop-shadow-[0_8px_16px_rgba(19,117,134,0.3)]"
-            >
+            {/* HIGH-RES 64x64 PIXEL BIRD SVG (ANCHORED FEET, MULTI-PART ANIMATION) */}
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center drop-shadow-[0_8px_18px_rgba(19,117,134,0.25)]">
               <svg 
-                viewBox="0 0 32 32" 
+                viewBox="0 0 64 64" 
                 className="w-full h-full"
                 style={{ imageRendering: 'pixelated', shapeRendering: 'crispEdges' }}
               >
-                {/* 1. PIXEL BRANCH PERCH */}
-                <g id="pixelBranch">
-                  {/* Branch Main Wood Tone */}
-                  <rect x="5" y="27" width="22" height="2" fill="#B5875B" />
-                  <rect x="7" y="29" width="18" height="1" fill="#734B29" />
-                  <rect x="6" y="26" width="20" height="1" fill="#D8C3AA" />
+                {/* 1. PERCH BRANCH (Static on card) */}
+                <g id="perchBranch">
+                  {/* Branch Main Wood */}
+                  <rect x="8" y="53" width="48" height="4" fill="#B5875B" />
+                  <rect x="10" y="57" width="44" height="2" fill="#734B29" />
+                  <rect x="12" y="52" width="40" height="1" fill="#D8C3AA" />
+                  {/* Bark Knots & Rings */}
+                  <rect x="16" y="54" width="3" height="2" fill="#8C5F2E" />
+                  <rect x="42" y="54" width="4" height="2" fill="#8C5F2E" />
+                  <rect x="44" y="55" width="2" height="1" fill="#5C3A1E" />
                 </g>
 
-                {/* 2. PIXEL FEET (Gripping branch) */}
-                <g id="pixelFeet">
-                  <rect x="13" y="25" width="2" height="2" fill="#A3733E" />
-                  <rect x="12" y="27" width="3" height="1" fill="#734B29" />
-                  <rect x="19" y="25" width="2" height="2" fill="#A3733E" />
-                  <rect x="18" y="27" width="3" height="1" fill="#734B29" />
+                {/* 2. PIXEL FEET (ANCHORED — Gripping branch tightly) */}
+                <g id="anchoredFeet">
+                  {/* Left Foot */}
+                  <rect x="23" y="49" width="3" height="4" fill="#C7A583" />
+                  <rect x="22" y="52" width="5" height="2" fill="#A3733E" />
+                  <rect x="21" y="53" width="2" height="2" fill="#734B29" />
+                  <rect x="25" y="53" width="2" height="2" fill="#734B29" />
+
+                  {/* Right Foot */}
+                  <rect x="35" y="49" width="3" height="4" fill="#C7A583" />
+                  <rect x="34" y="52" width="5" height="2" fill="#A3733E" />
+                  <rect x="33" y="53" width="2" height="2" fill="#734B29" />
+                  <rect x="37" y="53" width="2" height="2" fill="#734B29" />
                 </g>
 
-                {/* 3. PIXEL TAIL FEATHERS (Facing Right/Back) */}
+                {/* 3. ARTICULATED TAIL FEATHERS (Wags independently) */}
                 <motion.g
-                  id="pixelTail"
+                  id="articulatedTail"
                   animate={isPlaying ? {
-                    rotate: [-12, 0, 12, 0, -12],
+                    rotate: [-14, 8, -14],
                   } : {
-                    rotate: 0,
+                    rotate: [0, 3, 0],
                   }}
-                  transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }}
-                  style={{ transformOrigin: '23px 22px' }}
+                  transition={{ duration: 0.65, repeat: Infinity, ease: 'easeInOut' }}
+                  style={{ transformOrigin: '42px 45px' }}
                 >
-                  <rect x="22" y="20" width="3" height="2" fill="#092E36" />
-                  <rect x="23" y="22" width="3" height="3" fill="#105B69" />
-                  <rect x="25" y="24" width="3" height="3" fill="#137586" />
-                  <rect x="27" y="26" width="2" height="3" fill="#092E36" />
+                  <rect x="41" y="38" width="4" height="4" fill="#06181F" />
+                  <rect x="43" y="41" width="5" height="5" fill="#0B252E" />
+                  <rect x="46" y="45" width="5" height="6" fill="#105B69" />
+                  <rect x="49" y="49" width="4" height="6" fill="#137586" />
+                  <rect x="52" y="53" width="3" height="4" fill="#1A96AA" />
+                  <rect x="44" y="47" width="3" height="4" fill="#0E4652" />
                 </motion.g>
 
-                {/* 4. PIXEL TORSO / BODY (Plump regional kiwi-like silhouette in River Blue) */}
-                <g id="pixelBody">
-                  {/* Outline / Deep Shadow */}
-                  <rect x="11" y="15" width="12" height="10" fill="#0E4652" />
-                  
-                  {/* Mid-tone Plumage */}
-                  <rect x="12" y="14" width="10" height="11" fill="#137586" />
-                  <rect x="10" y="16" width="13" height="8" fill="#137586" />
-
-                  {/* Highlights (Top & Back) */}
-                  <rect x="14" y="13" width="7" height="2" fill="#1A96AA" />
-                  <rect x="20" y="15" width="2" height="7" fill="#1A96AA" />
-
-                  {/* Soft Chest & Belly Tones (Facing Left) */}
-                  <rect x="11" y="16" width="4" height="6" fill="#77CDDA" />
-                  <rect x="12" y="18" width="4" height="5" fill="#AEE2E8" />
-                  <rect x="13" y="20" width="3" height="3" fill="#E5F3F5" />
-                </g>
-
-                {/* 5. ARTICULATED PIXEL WING (Flaps in Minecraft tempo) */}
+                {/* 4. ARTICULATED TORSO / BODY (Breathing & rhythmic bounce anchored at feet) */}
                 <motion.g
-                  id="pixelWing"
+                  id="articulatedTorso"
                   animate={isPlaying ? {
-                    rotate: [0, -22, 0, 16, 0],
-                    scaleY: [1, 1.2, 0.9, 1.15, 1],
+                    scaleY: [1, 1.05, 0.98, 1.03, 1],
+                    scaleX: [1, 0.98, 1.02, 0.99, 1],
+                  } : {
+                    scaleY: [1, 1.02, 1],
+                  }}
+                  transition={isPlaying ? {
+                    duration: 0.65,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  } : {
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  style={{ transformOrigin: '30px 49px' }}
+                >
+                  {/* Deep Shadow / Silhouette Outline */}
+                  <rect x="18" y="29" width="23" height="20" rx="3" fill="#0B252E" />
+                  
+                  {/* Rich Midnight River Plumage Body */}
+                  <rect x="19" y="28" width="21" height="21" fill="#105B69" />
+                  <rect x="21" y="27" width="18" height="22" fill="#137586" />
+                  <rect x="23" y="29" width="15" height="18" fill="#1A96AA" />
+
+                  {/* Soft Light-Cyan Breast & Belly Patch (Facing Left) */}
+                  <rect x="19" y="31" width="6" height="15" fill="#39B3C6" />
+                  <rect x="20" y="33" width="6" height="13" fill="#77CDDA" />
+                  <rect x="21" y="35" width="5" height="10" fill="#AEE2E8" />
+                  <rect x="22" y="37" width="4" height="7" fill="#E5F3F5" />
+                  <rect x="23" y="39" width="2" height="4" fill="#FFFFFF" />
+
+                  {/* Back Rump Feather Shading */}
+                  <rect x="36" y="32" width="4" height="12" fill="#0E4652" />
+                  <rect x="38" y="34" width="3" height="8" fill="#092E36" />
+                </motion.g>
+
+                {/* 5. ARTICULATED WING (Flaps independently from shoulder pivot) */}
+                <motion.g
+                  id="articulatedWing"
+                  animate={isPlaying ? {
+                    rotate: [0, -28, 6, -20, 0],
+                    scaleX: [1, 1.15, 0.95, 1.1, 1],
+                    scaleY: [1, 1.1, 0.95, 1.05, 1],
                   } : {
                     rotate: 0,
-                    scaleY: 1,
                   }}
-                  transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }}
-                  style={{ transformOrigin: '17px 16px' }}
+                  transition={{ duration: 0.65, repeat: Infinity, ease: 'easeInOut' }}
+                  style={{ transformOrigin: '34px 32px' }}
                 >
                   {/* Wing Outline */}
-                  <rect x="16" y="16" width="7" height="6" fill="#092E36" />
-                  {/* Wing Primary Layer */}
-                  <rect x="17" y="17" width="5" height="5" fill="#105B69" />
-                  {/* Wing Secondary Feathers */}
-                  <rect x="18" y="18" width="4" height="3" fill="#137586" />
-                  {/* Feather Tips */}
-                  <rect x="19" y="19" width="3" height="2" fill="#1A96AA" />
-                  <rect x="21" y="21" width="2" height="2" fill="#77CDDA" />
+                  <rect x="28" y="30" width="14" height="13" rx="2" fill="#06181F" />
+                  {/* Shoulder Coverts */}
+                  <rect x="29" y="31" width="11" height="10" fill="#0E4652" />
+                  <rect x="31" y="32" width="8" height="8" fill="#137586" />
+                  {/* Middle Wing Band */}
+                  <rect x="32" y="34" width="7" height="6" fill="#1A96AA" />
+                  {/* Primary Flight Feathers & Tips */}
+                  <rect x="34" y="37" width="5" height="5" fill="#39B3C6" />
+                  <rect x="36" y="39" width="4" height="4" fill="#77CDDA" />
+                  <rect x="37" y="41" width="3" height="3" fill="#AEE2E8" />
                 </motion.g>
 
-                {/* 6. ARTICULATED PIXEL HEAD & SLENDER BEAK (Stepped Tilt & Bob) */}
+                {/* 6. ARTICULATED HEAD, CREST & BEAK (Independent Neck Pivot & Minecraft Tilt) */}
                 <motion.g
-                  id="pixelHead"
+                  id="articulatedHead"
                   animate={isPlaying ? {
                     rotate: [-16, 0, 16, 0, -16],
-                    y: [0, -2, 0, -1, 0],
+                    y: [0, -3, 0, -2, 0],
+                    x: [0, -1, 0, 1, 0],
                   } : {
-                    rotate: 0,
-                    y: 0,
+                    rotate: [0, 2, -1, 0],
+                    y: [0, -1, 0],
                   }}
-                  transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }}
-                  style={{ transformOrigin: '16px 14px' }}
+                  transition={isPlaying ? {
+                    duration: 0.65,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  } : {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  style={{ transformOrigin: '28px 26px' }}
                 >
-                  {/* Head Dome & Crest */}
-                  <rect x="12" y="7" width="8" height="7" fill="#137586" />
-                  <rect x="13" y="6" width="6" height="2" fill="#1A96AA" />
-                  {/* Playful Crest Tuft */}
-                  <rect x="18" y="4" width="2" height="3" fill="#77CDDA" />
-                  <rect x="17" y="5" width="2" height="2" fill="#1A96AA" />
+                  {/* Feather Crown / Crest (Top of Head - Secondary Delayed Spring Bounce) */}
+                  <motion.g
+                    id="crownCrest"
+                    animate={isPlaying ? {
+                      rotate: [0, -20, 0, 16, 0],
+                    } : {
+                      rotate: 0,
+                    }}
+                    transition={{ duration: 0.65, delay: 0.08, repeat: Infinity, ease: 'easeInOut' }}
+                    style={{ transformOrigin: '32px 14px' }}
+                  >
+                    <rect x="30" y="8" width="3" height="6" fill="#1A96AA" />
+                    <rect x="32" y="5" width="3" height="8" fill="#39B3C6" />
+                    <rect x="34" y="7" width="3" height="6" fill="#77CDDA" />
+                    <rect x="33" y="4" width="2" height="3" fill="#AEE2E8" />
+                  </motion.g>
 
-                  {/* Head Shadow & Chin */}
-                  <rect x="14" y="13" width="6" height="2" fill="#0E4652" />
-                  <rect x="12" y="11" width="3" height="3" fill="#1A96AA" />
+                  {/* Main Head Skull */}
+                  <rect x="19" y="14" width="16" height="14" rx="2" fill="#0B252E" />
+                  <rect x="20" y="13" width="14" height="14" fill="#105B69" />
+                  <rect x="21" y="13" width="12" height="13" fill="#137586" />
+                  <rect x="23" y="12" width="9" height="12" fill="#1A96AA" />
+                  <rect x="25" y="13" width="6" height="4" fill="#39B3C6" />
 
-                  {/* Eye (Curious Glint Pixel) */}
-                  <rect x="13" y="8" width="3" height="3" fill="#FFFFFF" />
-                  <rect x="14" y="8" width="2" height="2" fill="#092E36" />
-                  <rect x="14" y="8" width="1" height="1" fill="#FFFFFF" />
+                  {/* Throat Chin Shading */}
+                  <rect x="20" y="24" width="7" height="3" fill="#39B3C6" />
+                  <rect x="22" y="25" width="4" height="2" fill="#77CDDA" />
 
-                  {/* SLENDER LONG BEAK (Extending LEFT towards Vinyl Turntable) */}
-                  <rect x="8" y="10" width="5" height="2" fill="#E2BA84" />
-                  <rect x="4" y="11" width="5" height="1" fill="#E2BA84" />
-                  <rect x="2" y="11" width="3" height="1" fill="#C7A583" />
-                  {/* Beak shadow */}
-                  <rect x="6" y="12" width="6" height="1" fill="#A3733E" />
+                  {/* Eye Mask Accent */}
+                  <rect x="19" y="17" width="11" height="5" fill="#092E36" />
+                  
+                  {/* Expressive Pixel Eye */}
+                  <rect x="22" y="17" width="5" height="5" fill="#FFFFFF" />
+                  <rect x="23" y="17" width="3" height="4" fill="#06181F" />
+                  <rect x="23" y="17" width="1.5" height="1.5" fill="#FFFFFF" />
+                  <rect x="24" y="19" width="1.5" height="1.5" fill="#137586" />
+
+                  {/* SLENDER HIGH-RES BEAK (Extending LEFT towards Vinyl Turntable) */}
+                  {/* Upper Beak */}
+                  <rect x="14" y="19" width="7" height="3" fill="#C7A583" />
+                  <rect x="9" y="20" width="7" height="2" fill="#E2BA84" />
+                  <rect x="4" y="21" width="6" height="1.5" fill="#F3D5A5" />
+                  <rect x="14" y="21" width="7" height="1" fill="#A3733E" />
+                  <rect x="8" y="21.5" width="7" height="0.8" fill="#8C5F2E" />
+
+                  {/* Lower Beak (Chirping micro-motion on beats) */}
+                  <motion.g
+                    id="lowerBeak"
+                    animate={isPlaying ? {
+                      y: [0, 1.5, 0, 1.2, 0],
+                    } : {
+                      y: 0,
+                    }}
+                    transition={{ duration: 0.65, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <rect x="14" y="22.5" width="6" height="1.8" fill="#C7A583" />
+                    <rect x="10" y="22.8" width="5" height="1.2" fill="#E2BA84" />
+                    <rect x="6" y="22.8" width="5" height="0.8" fill="#A3733E" />
+                  </motion.g>
                 </motion.g>
               </svg>
-            </motion.div>
+            </div>
           </div>
 
           <div className="mt-1 flex items-center justify-center gap-1.5 text-center">
             <span className="text-[11px] font-mono font-bold text-[#137586] tracking-wide">
-              Kodagu Pixel Songbird
+              Kodagu Kingfisher
             </span>
             <span className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-md bg-[#FAF0E1] text-[#A3733E] border border-[#E8DFD1]">
-              8-BIT
+              16-BIT HD
             </span>
           </div>
         </div>
@@ -484,7 +547,7 @@ export const VinylBirdsongPlayer: React.FC = () => {
         <div className="flex items-center justify-between text-[11px] font-mono font-semibold text-[#635546]">
           <span>{formatTime(currentTime)}</span>
           <span className="text-[10px] font-sans font-bold text-[#137586] uppercase tracking-wider">
-            {isPlaying ? '♪ Playing Sanctuary Dawn Audio' : 'Click Vinyl or Pixel Bird to Play'}
+            {isPlaying ? '♪ Playing Sanctuary Dawn Audio' : 'Click Vinyl or Bird to Play'}
           </span>
           <span>{formatTime(duration)}</span>
         </div>
