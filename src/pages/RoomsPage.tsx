@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  BedDouble, Users, Trees, ShieldCheck, ArrowUpRight, Sparkles, 
+  BedDouble, Users, Trees, ArrowUpRight, Sparkles, 
   ChevronDown, ChevronUp, Crown
 } from 'lucide-react';
 import { RoomsSection } from '../components/sections/RoomsSection';
@@ -13,58 +13,6 @@ interface RoomsPageProps {
 
 export const RoomsPage: React.FC<RoomsPageProps> = ({ onOpenEnquiry }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const comparisonRows = [
-    {
-      feature: 'Resort Wing Location',
-      olive: 'Garden Wing',
-      emerald: 'Plantation Wing',
-      family: 'Family Poolside Wing',
-      verandah: 'Executive Palm Wing',
-    },
-    {
-      feature: 'Bed Configuration',
-      olive: 'King Plush + Daybed',
-      emerald: 'Custom King Timber Bed',
-      family: 'Twin Queen Beds',
-      verandah: 'King Bed + Lounge Sofas',
-    },
-    {
-      feature: 'Max Guests Capacity',
-      olive: 'Up to 3 Guests',
-      emerald: 'Up to 3 Guests',
-      family: 'Up to 4 Guests',
-      verandah: 'Up to 3 Guests',
-    },
-    {
-      feature: 'Window View Orientation',
-      olive: 'Lush Garden Vista',
-      emerald: 'Coffee Plantation View',
-      family: 'Open Lawn & Pool Vista',
-      verandah: 'Shaded Palm Walkway',
-    },
-    {
-      feature: 'Private En-Suite Bath',
-      olive: 'Hot Rainshower & Vanity',
-      emerald: 'Forest Bath Rainshower',
-      family: 'Spacious Dual Vanity Bath',
-      verandah: 'Acoustic Rainshower Bath',
-    },
-    {
-      feature: 'Estate Breakfast Included',
-      olive: 'Yes (Included)',
-      emerald: 'Yes (Included)',
-      family: 'Yes (Included)',
-      verandah: 'Yes (Included)',
-    },
-    {
-      feature: 'Reservation Status',
-      olive: 'Available on Direct Booking',
-      emerald: 'Available on Direct Booking',
-      family: 'Available on Direct Booking',
-      verandah: 'Available on Direct Booking',
-    },
-  ];
 
   const faqs = [
     {
@@ -196,52 +144,7 @@ export const RoomsPage: React.FC<RoomsPageProps> = ({ onOpenEnquiry }) => {
         </CinematicReveal>
       </div>
 
-      {/* Side-by-Side Suite Comparison Matrix with Sticky Column */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <CinematicReveal className="space-y-3 max-w-xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#D5C7B2] bg-[#FAF6EF] px-4 py-1.5 text-xs font-bold text-[#A3733E] shadow-sm">
-            <ShieldCheck className="w-4 h-4 text-[#A3733E]" />
-            <span className="tracking-wide uppercase">Specifications & Comparison</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-bold text-[#132422] font-display heading-balance leading-tight">
-            Side-by-Side Suite Comparison
-          </h2>
-          <p className="text-sm text-[#2C413E] font-normal leading-relaxed prose-pretty">
-            Compare layouts, occupancy limits, bed configurations, and verified amenities across all four suite categories.
-          </p>
-        </CinematicReveal>
 
-        <CinematicReveal delay={0.15}>
-          <div className="overflow-x-auto rounded-3xl border border-[#E4D9C8] bg-[#FAF6EF] shadow-sm">
-            <table className="w-full text-left border-collapse min-w-[640px]">
-              <thead>
-                <tr className="bg-[#EFE8DC] border-b border-[#E4D9C8]">
-                  <th className="sticky left-0 z-10 bg-[#EFE8DC] p-4 sm:p-5 text-xs font-bold uppercase tracking-wider text-[#132422] shadow-[2px_0_5px_rgba(0,0,0,0.04)]">
-                    Feature
-                  </th>
-                  <th className="p-4 sm:p-5 text-xs font-bold uppercase tracking-wider text-[#137586]">Calm Olive</th>
-                  <th className="p-4 sm:p-5 text-xs font-bold uppercase tracking-wider text-[#137586]">Emerald Accent</th>
-                  <th className="p-4 sm:p-5 text-xs font-bold uppercase tracking-wider text-[#137586]">Family Haven</th>
-                  <th className="p-4 sm:p-5 text-xs font-bold uppercase tracking-wider text-[#137586]">Verandah Lounge</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E4D9C8] text-xs sm:text-sm">
-                {comparisonRows.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-[#F5EFE6] transition-colors">
-                    <td className="sticky left-0 z-10 bg-[#FAF6EF] p-4 sm:p-5 font-bold text-[#132422] shadow-[2px_0_5px_rgba(0,0,0,0.04)]">
-                      {row.feature}
-                    </td>
-                    <td className="p-4 sm:p-5 text-[#2C413E]">{row.olive}</td>
-                    <td className="p-4 sm:p-5 text-[#2C413E]">{row.emerald}</td>
-                    <td className="p-4 sm:p-5 text-[#2C413E]">{row.family}</td>
-                    <td className="p-4 sm:p-5 text-[#2C413E]">{row.verandah}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CinematicReveal>
-      </div>
 
       {/* Guest Policies & FAQ Accordion */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
