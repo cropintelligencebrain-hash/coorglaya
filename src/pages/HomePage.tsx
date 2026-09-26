@@ -2,7 +2,7 @@ import React from 'react';
 import { LayaVideoHeroSection } from '../components/sections/LayaVideoHeroSection';
 import { RoomsSection } from '../components/sections/RoomsSection';
 import { AmenitiesSection } from '../components/sections/AmenitiesSection';
-import { KiwiBirdNatureSection } from '../components/sections/KiwiBirdNatureSection';
+import { BirdsongNatureSection } from '../components/sections/BirdsongNatureSection';
 import { ActivitiesSection } from '../components/sections/ActivitiesSection';
 import { EventsSection } from '../components/sections/EventsSection';
 import { GallerySection } from '../components/sections/GallerySection';
@@ -32,9 +32,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenEnquiry }) => {
         <AmenitiesSection />
       </div>
 
-      {/* 4. KIWI BIRD NATURE EXPERIENCE (Animated Avian Flight Across Canopy + Natural Ambient Birdsong) */}
+      {/* 4. FRESH PLANTATION BREW & DAWN BIRDSONG (Vinyl Turntable + Minecraft Dancing Bird) */}
       <div id="nature-section" className="snap-section">
-        <KiwiBirdNatureSection />
+        <BirdsongNatureSection />
       </div>
 
       {/* 5. ACTIVITIES & EXPERIENCES (Recreation Schedule, Sports, Energy Meter & WhatsApp Planning) */}
